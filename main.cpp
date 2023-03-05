@@ -9,21 +9,21 @@ class Position{
 
 public:
     Position(int xAxis, int yAxis) : x_axis(xAxis), y_axis(yAxis) {
-        std::cout << "Constructor initializare poz\n";
+        //std::cout << "Constructor initializare poz\n";
     }
     Position(const Position& other) : x_axis{other.x_axis}, y_axis{other.y_axis} {
-        std::cout << "Constructor copiere poz\n";
+        //std::cout << "Constructor copiere poz\n";
     }
 
     Position& operator=(const Position& other) {
         x_axis = other.x_axis;
         y_axis = other.y_axis;
-        std::cout << "operator= copiere poz\n";
+        //std::cout << "operator= copiere poz\n";
         return *this;
     }
 
     ~Position() {
-        std::cout << "Destr poz\n";
+        //std::cout << "Destr poz\n";
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Position& st) {
@@ -38,11 +38,11 @@ class Wall{
 
 public:
     explicit Wall(const Position &position) : position(position) {
-        std::cout << "Constructor initializare zid\n";
+        //std::cout << "Constructor initializare zid\n";
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Wall& st) {
-        os << "Wall: " << st.position << "\n";
+        os << "Wall: " << st.position;
         return os;
     }
 
@@ -54,11 +54,11 @@ class Player{
 
 public:
     Player(const Position &position, const queue<char> &inputs) : position(position), inputs(inputs) {
-        std::cout << "Constructor initializare juc\n";
+        //std::cout << "Constructor initializare juc\n";
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Player& st) {
-        os << "Position: " << st.position << "Pentru moment nu afisam coada de imputuri" <<"\n";
+        os << "Position: " << st.position << "\n";
         return os;
     }
 
@@ -71,11 +71,14 @@ class Board{
 
 public:
     Board(int lines, int columns, const vector<Wall> &walls, Player player) : lines(lines), columns(columns),
-                                                                                     walls(walls), player(std::move(player)) {
-        std::cout << "Constructor initializare tabla\n";
+                                                                    walls(walls), player(std::move(player)) {
+        //std::cout << "Constructor initializare tabla\n";
     }
     friend std::ostream& operator<<(std::ostream& os, const Board& st) {
-        os << "lines: " << st.lines << ", columns: " << st.columns << ", Player: " << st.player << "Pentru moment nu afisam vectorul de ziduri" <<"\n";
+        os << "lines: " << st.lines << ", columns: " << st.columns << "\nPlayer " << st.player << "walls:" << "\n";
+        for(const auto & wall : st.walls)
+            os << wall;
+
         return os;
     }
 
@@ -84,10 +87,15 @@ public:
 int main(){
     Position p1{1,2}, p2{5,0};
     Wall zid1{p2};
+    Wall zid2{p1};
     std::vector<Wall> vector1;
     vector1.push_back(zid1);
+    vector1.push_back(zid2);
     std::queue<char> coada;
     coada.push('a');
+    coada.push('s');
+    coada.push('d');
+    coada.push('w');
     Player jucator{p2,coada};
     Board tabla{10,10,vector1,jucator};
 
