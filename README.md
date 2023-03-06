@@ -1,19 +1,36 @@
+# Sokoban
+
+
+Sokoban (倉庫番, Sōko-ban, lit.'warehouse keeper') is a puzzle video game in which the player pushes boxes around in a warehouse, trying to get them to storage locations. The game was designed in 1981 by Hiroyuki Imabayashi, and first published in December 1982. [ <sup>[1]</sup> ](https://en.wikipedia.org/wiki/Sokoban)
+
+### Gameplay
+
+The game is played on a board of squares, where each square is a floor or a wall. Some floor squares contain boxes, and some floor squares are marked as storage locations.
+
+The player is confined to the board and may move horizontally or vertically onto empty squares (never through walls or boxes). The player can move a box by walking up to it and push it to the square beyond. Boxes cannot be pulled, and they cannot be pushed to squares with walls or other boxes. The number of boxes equals the number of storage locations. The puzzle is solved when all boxes are placed at storage locations. <sup> [[2]](https://en.wikipedia.org/wiki/Sokoban#Gameplay) </sup>
+
+## Current state of the project:
+
+n/a
+
+---
+
 # OOP Template
 
 ### Tema 0
 
-- [ ] Nume proiect (poate fi schimbat ulterior)
-- [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
+- [x] Nume proiect (poate fi schimbat ulterior)
+- [x] Scurtă descriere a temei alese, ce v-ați propus să implementați
 
 ## Tema 1
 
 #### Cerințe
-- [ ] definirea a minim 3-4 clase folosind compunere
-- [ ] constructori de inițializare
-- [ ] pentru o clasă: constructor de copiere, `operator=` de copiere, destructor
+- [x] definirea a minim 3-4 clase folosind compunere
+- [x] constructori de inițializare
+- [x] pentru o clasă: constructor de copiere, `operator=` de copiere, destructor
 <!-- - [ ] pentru o altă clasă: constructor de mutare, `operator=` de mutare, destructor -->
 <!-- - [ ] pentru o altă clasă: toate cele 5 funcții membru speciale -->
-- [ ] `operator<<` pentru toate clasele pentru afișare (std::ostream)
+- [x] `operator<<` pentru toate clasele pentru afișare (std::ostream)
 - [ ] cât mai multe `const` (unde este cazul)
 - [ ] implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese
 - [ ] scenariu de utilizare a claselor definite:
@@ -54,5 +71,4 @@
 
 ## Resurse
 
-- [SFML](https://github.com/SFML/SFML/tree/aa82ea132b9296a31922772027ad5d14c1fa381b) (Zlib)
 - adăugați trimiteri către resursele externe care v-au ajutat sau pe care le-ați folosit
