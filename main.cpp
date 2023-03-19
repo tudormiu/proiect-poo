@@ -138,20 +138,14 @@ public:
 };
 
 int main(){
-    Position p1{1,2}, p2{5,0};
+    Position p1{1,2}, p2{5,0}, p3{3,3};
     Wall zid1{p2};
     Wall zid2{p1};
     std::vector<Wall> vector1;
     vector1.push_back(zid1);
     vector1.push_back(zid2);
 
-    std::queue<char> coada;
-    coada.push('a');
-    coada.push('s');
-    coada.push('d');
-    coada.push('w');
-
-    Player jucator{p2};
+    Player jucator{p3};
     Board tabla{10,10,vector1,jucator};
 
     std::cout<< "\n";
