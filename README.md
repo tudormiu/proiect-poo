@@ -9,9 +9,28 @@ The game is played on a board of squares, where each square is a floor or a wall
 
 The player is confined to the board and may move horizontally or vertically onto empty squares (never through walls or boxes). The player can move a box by walking up to it and push it to the square beyond. Boxes cannot be pulled, and they cannot be pushed to squares with walls or other boxes. The number of boxes equals the number of storage locations. The puzzle is solved when all boxes are placed at storage locations. <sup> [[2]](https://en.wikipedia.org/wiki/Sokoban#Gameplay) </sup>
 
-## Current state of the project:
+### Movement
 
-n/a
+You can move the player using the 'w', 'a', 's', 'd' keys.
+The player can move only one square at a time.
+
+### Current state of the project:
+
+The player can move around the board. Collisions with walls and
+the edges of the board are handled.
+
+There are no boxes yet and no grpaics. In order to test the
+movement of the player, the board is printed to the console.
+
+In order to better understand the movement of the player, in case
+of a collision, the player is not moved and, along with the board,
+a message is printed to the console.
+
+In order to stop the game, press 'r'.
+
+After the game is stopped, a window will open. It doesn't have
+any functionality yet, but it will be used to display the
+current state of the game.
 
 ---
 
@@ -31,13 +50,13 @@ n/a
 <!-- - [ ] pentru o altă clasă: constructor de mutare, `operator=` de mutare, destructor -->
 <!-- - [ ] pentru o altă clasă: toate cele 5 funcții membru speciale -->
 - [x] `operator<<` pentru toate clasele pentru afișare (std::ostream)
-- [ ] cât mai multe `const` (unde este cazul)
-- [ ] implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese
-- [ ] scenariu de utilizare a claselor definite:
+- [x] cât mai multe `const` (unde este cazul)
+- [x] implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese
+- [x] scenariu de utilizare a claselor definite:
   - crearea de obiecte și apelarea funcțiilor membru publice în main
   - vor fi adăugate în fișierul `tastatura.txt` exemple de date de intrare de la tastatură (dacă există)
-- [ ] tag de `git`: de exemplu `v0.1`
-- [ ] serviciu de integrare continuă (CI); exemplu: GitHub Actions
+- [x] tag de `git`: de exemplu `v0.1`
+- [x] serviciu de integrare continuă (CI); exemplu: GitHub Actions
 
 ## Tema 2
 

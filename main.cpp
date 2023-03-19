@@ -138,14 +138,20 @@ public:
 };
 
 int main(){
-    Position p1{1,2}, p2{5,0}, p3{3,3};
-    Wall zid1{p2};
-    Wall zid2{p1};
+    Position p1{1,2}, p2{5,0}, p3{3,3}, p4{4,4}, p5{1,3}, p6{1,4};
+    Wall zid1{p1};
+    Wall zid2{p2};
+    Wall zid3{p3};
+    Wall zid4{p4};
+    Wall zid5{p5};
     std::vector<Wall> vector1;
     vector1.push_back(zid1);
     vector1.push_back(zid2);
+    vector1.push_back(zid3);
+    vector1.push_back(zid4);
+    vector1.push_back(zid5);
 
-    Player jucator{p3};
+    Player jucator{p6};
     Board tabla{10,10,vector1,jucator};
 
     std::cout<< "\n";
@@ -162,6 +168,7 @@ int main(){
     }
 
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+
     while (window.isOpen())
     {
         sf::Event event{};
