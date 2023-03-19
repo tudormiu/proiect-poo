@@ -32,13 +32,13 @@ public:
         position_.y_axis = position_.y_axis + (input_ == 'w' ? 1 : (input_ == 's' ? -1 : 0));
     }
 
-    static bool comparing(Position &position1_, Position &position2_){
+    static bool comparing(Position const& position1_, Position  const& position2_){
         if (position1_.x_axis == position2_.x_axis && position1_.y_axis == position2_.y_axis)
             return true;
         return false;
     }
 
-    static bool positionInLimits(Position &position_, int down_, int right_){
+    static bool positionInLimits(Position const& position_, int down_, int right_){
         if (position_.x_axis >= 0 && position_.x_axis < down_ && position_.y_axis >= 0 && position_.y_axis < right_)
             return true;
         std::cout << "Ai atins limita tablei\n";
