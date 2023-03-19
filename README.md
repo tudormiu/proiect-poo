@@ -14,6 +14,8 @@ The player is confined to the board and may move horizontally or vertically onto
 You can move the player using the 'w', 'a', 's', 'd' keys.
 The player can move only one square at a time.
 
+In this stage of the project, inputs can be given using the "tastatura.txt" file.
+
 ### Current state of the project:
 
 The player can move around the board. Collisions with walls and
@@ -25,8 +27,6 @@ movement of the player, the board is printed to the console.
 In order to better understand the movement of the player, in case
 of a collision, the player is not moved and, along with the board,
 a message is printed to the console.
-
-In order to stop the game, press 'r'.
 
 After the game is stopped, a window will open. It doesn't have
 any functionality yet, but it will be used to display the
