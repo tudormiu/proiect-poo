@@ -2,8 +2,8 @@
 #include <queue>
 #include <utility>
 #include <SFML/Graphics.hpp>
+#include <fstream>
 
-using namespace std;
 
 class Position{
     int x_axis, y_axis;
@@ -101,7 +101,7 @@ class Board {
     Player player;
 
 public:
-    Board(int lines, int columns, const vector<Wall> &walls, Player player) : lines(lines), columns(columns),
+    Board(int lines, int columns, const std::vector<Wall> &walls, Player player) : lines(lines), columns(columns),
                                                                               walls(walls), player(std::move(player)) {
         //std::cout << "Constructor initializare tabla\n";
     }
@@ -160,9 +160,9 @@ int main(){
     std::cout << jucator;
     std::cout << tabla;
 
-    char input_test= 'q';
-    while (input_test != 'r'){
-        std::cin >> input_test;
+    std::ifstream fin("tastatura.txt");
+    char input_test;
+    while (fin >> input_test){
         tabla.movePlayer(input_test);
         std::cout << tabla;
     }
