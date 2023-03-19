@@ -27,6 +27,24 @@ public:
         //std::cout << "Destr poz\n";
     }
 
+    static void updatePosition(Position &position_, char input_) {
+        position_.x_axis = position_.x_axis + (input_ == 'd' ? 1 : (input_ == 'a' ? -1 : 0));
+        position_.y_axis = position_.y_axis + (input_ == 'w' ? 1 : (input_ == 's' ? -1 : 0));
+    }
+
+    static bool comparing(Position &position1_, Position &position2_){
+        if (position1_.x_axis == position2_.x_axis && position1_.y_axis == position2_.y_axis)
+            return true;
+        return false;
+    }
+
+    static bool positionInLimits(Position &position_, int down_, int right_){
+        if (position_.x_axis >= 0 && position_.x_axis < down_ && position_.y_axis >= 0 && position_.y_axis < right_)
+            return true;
+        std::cout << "Ai atins limita tablei\n";
+        return false;
+    }
+
     friend std::ostream& operator<<(std::ostream& os, const Position& st) {
         os << "x_axis: " << st.x_axis << ", y_axis: " << st.y_axis << "\n";
         return os;
@@ -47,14 +65,22 @@ public:
         return os;
     }
 
+    static bool checkCollision(Position &position_, Wall &wall_){
+        if (Position::comparing(position_, wall_.position))
+        {
+            std::cout << "Ai lovit un zid\n";
+            return true;
+        }
+        return false;
+    }
+
 };
 
 class Player{
     Position position;
-    std::queue<char> inputs;
 
 public:
-    Player(const Position &position, const queue<char> &inputs) : position(position), inputs(inputs) {
+    explicit Player(const Position &position) : position(position){
         //std::cout << "Constructor initializare juc\n";
     }
 
@@ -63,9 +89,13 @@ public:
         return os;
     }
 
+    [[nodiscard]] const Position &getPosition() const {
+        return position;
+    }
+
 };
 
-class Board{
+class Board {
     int lines, columns;
     std::vector<Wall> walls;
     Player player;
@@ -75,12 +105,34 @@ public:
                                                                               walls(walls), player(std::move(player)) {
         //std::cout << "Constructor initializare tabla\n";
     }
-    friend std::ostream& operator<<(std::ostream& os, const Board& st) {
+
+    friend std::ostream &operator<<(std::ostream &os, const Board &st) {
         os << "lines: " << st.lines << ", columns: " << st.columns << "\nPlayer " << st.player << "walls:" << "\n";
-        for(const auto & wall : st.walls)
+        for (const auto &wall: st.walls)
             os << wall;
 
         return os;
+    }
+
+    void movePlayer(char input_){
+        if (input_ != 'a' && input_ != 's' && input_ != 'd' && input_ != 'w')
+            return;
+        Position temp_{player.getPosition()};
+        Position::updatePosition(temp_, input_);
+        bool colision = false;
+        for (const auto & wall : walls) {
+            if (Wall::checkCollision(temp_, const_cast<Wall &>(wall))) {
+                colision = true;
+                break;
+            }
+            if (!Position::positionInLimits(temp_, lines, columns)) {
+                colision = true;
+                break;
+            }
+
+        }
+        if (!colision)
+            Position::updatePosition(const_cast<Position &>(player.getPosition()), input_);
     }
 
 };
@@ -99,7 +151,7 @@ int main(){
     coada.push('d');
     coada.push('w');
 
-    Player jucator{p2,coada};
+    Player jucator{p2};
     Board tabla{10,10,vector1,jucator};
 
     std::cout<< "\n";
@@ -108,10 +160,17 @@ int main(){
     std::cout << jucator;
     std::cout << tabla;
 
+    char input_test= 'q';
+    while (input_test != 'r'){
+        std::cin >> input_test;
+        tabla.movePlayer(input_test);
+        std::cout << tabla;
+    }
+
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
     while (window.isOpen())
     {
-        sf::Event event;
+        sf::Event event{};
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -119,6 +178,7 @@ int main(){
         }
 
         window.clear();
+
         window.display();
     }
 
