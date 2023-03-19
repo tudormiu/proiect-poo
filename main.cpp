@@ -65,7 +65,7 @@ public:
         return os;
     }
 
-    static bool checkCollision(Position &position_, Wall &wall_){
+    static bool checkCollision(Position const& position_, Wall const& wall_){
         if (Position::comparing(position_, wall_.position))
         {
             std::cout << "Ai lovit un zid\n";
