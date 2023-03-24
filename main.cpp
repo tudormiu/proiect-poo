@@ -2,7 +2,6 @@
 #include <queue>
 #include <utility>
 #include <SFML/Graphics.hpp>
-#include <fstream>
 
 
 class Position{
@@ -157,9 +156,9 @@ int main(){
     std::cout << jucator;
     std::cout << tabla;
 
-    std::ifstream fin("tastatura.txt");
-    char input_test;
-    while (fin >> input_test){
+    char input_test = '0';
+    while (input_test != 'r'){
+        std::cin >> input_test;
         tabla.movePlayer(input_test);
         std::cout << tabla;
     }
