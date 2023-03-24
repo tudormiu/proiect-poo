@@ -27,19 +27,17 @@ public:
         //std::cout << "Destr poz\n";
     }
 
-    static void updatePosition(Position &position_, char input_) {
-        position_.x_axis = position_.x_axis + (input_ == 'd' ? 1 : (input_ == 'a' ? -1 : 0));
-        position_.y_axis = position_.y_axis + (input_ == 'w' ? 1 : (input_ == 's' ? -1 : 0));
+    void updatePosition(const char input_) {
+        this -> x_axis = this -> x_axis + (input_ == 'd' ? 1 : (input_ == 'a' ? -1 : 0));
+        this -> y_axis = this -> y_axis + (input_ == 'w' ? 1 : (input_ == 's' ? -1 : 0));
     }
 
     static bool comparing(Position const& position1_, Position  const& position2_){
-        if (position1_.x_axis == position2_.x_axis && position1_.y_axis == position2_.y_axis)
-            return true;
-        return false;
+        return position1_.x_axis == position2_.x_axis && position1_.y_axis == position2_.y_axis;
     }
 
-    static bool positionInLimits(Position const& position_, int down_, int right_){
-        if (position_.x_axis >= 0 && position_.x_axis < down_ && position_.y_axis >= 0 && position_.y_axis < right_)
+    [[nodiscard]] bool positionInLimits(const int down_, const int right_) const{
+        if (this -> x_axis >= 0 && this -> x_axis < down_ && this -> y_axis >= 0 && this -> y_axis < right_)
             return true;
         std::cout << "Ai atins limita tablei\n";
         return false;
@@ -65,8 +63,8 @@ public:
         return os;
     }
 
-    static bool checkCollision(Position const& position_, Wall const& wall_){
-        if (Position::comparing(position_, wall_.position))
+    bool checkCollision(Position const& position_){
+        if (Position::comparing(position_, this -> position))
         {
             std::cout << "Ai lovit un zid\n";
             return true;
@@ -89,7 +87,7 @@ public:
         return os;
     }
 
-    [[nodiscard]] const Position &getPosition() const {
+    [[nodiscard]] Position &getPosition() {
         return position;
     }
 
@@ -118,21 +116,20 @@ public:
         if (input_ != 'a' && input_ != 's' && input_ != 'd' && input_ != 'w')
             return;
         Position temp_{player.getPosition()};
-        Position::updatePosition(temp_, input_);
+        temp_.updatePosition(input_);
         bool colision = false;
-        for (const auto & wall : walls) {
-            if (Wall::checkCollision(temp_, const_cast<Wall &>(wall))) {
+        for (Wall wall : walls) {
+            if (wall.checkCollision(temp_)) {
                 colision = true;
                 break;
             }
-            if (!Position::positionInLimits(temp_, lines, columns)) {
+            if (!temp_.positionInLimits(lines, columns)){
                 colision = true;
                 break;
             }
-
         }
         if (!colision)
-            Position::updatePosition(const_cast<Position &>(player.getPosition()), input_);
+            player.getPosition().updatePosition(input_);
     }
 
 };

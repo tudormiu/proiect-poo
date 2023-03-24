@@ -1,20 +1,34 @@
 # Sokoban
 
 
-Sokoban (倉庫番, Sōko-ban, lit.'warehouse keeper') is a puzzle video game in which the player pushes boxes around in a warehouse, trying to get them to storage locations. The game was designed in 1981 by Hiroyuki Imabayashi, and first published in December 1982. [ <sup>[1]</sup> ](https://en.wikipedia.org/wiki/Sokoban)
+Sokoban (倉庫番, Sōko-ban, lit.'warehouse keeper') is a puzzle 
+video game in which the player pushes boxes around in a warehouse,
+trying to get them to storage locations. The game was designed in
+1981 by Hiroyuki Imabayashi, and first published in December 1982.
+[ <sup>[1]</sup> ](https://en.wikipedia.org/wiki/Sokoban)
 
 ### Gameplay
 
-The game is played on a board of squares, where each square is a floor or a wall. Some floor squares contain boxes, and some floor squares are marked as storage locations.
+The game is played on a board of squares, where each square is a
+floor or a wall. Some floor squares contain boxes, and some floor
+squares are marked as storage locations.
 
-The player is confined to the board and may move horizontally or vertically onto empty squares (never through walls or boxes). The player can move a box by walking up to it and push it to the square beyond. Boxes cannot be pulled, and they cannot be pushed to squares with walls or other boxes. The number of boxes equals the number of storage locations. The puzzle is solved when all boxes are placed at storage locations. <sup> [[2]](https://en.wikipedia.org/wiki/Sokoban#Gameplay) </sup>
+The player is confined to the board and may move horizontally or
+vertically onto empty squares (never through walls or boxes). The
+player can move a box by walking up to it and push it to the
+square beyond. Boxes cannot be pulled, and they cannot be pushed
+to squares with walls or other boxes. The number of boxes equals
+the number of storage locations. The puzzle is solved when all 
+boxes are placed at storage locations.
+<sup> [[2]](https://en.wikipedia.org/wiki/Sokoban#Gameplay) </sup>
 
 ### Movement
 
 You can move the player using the 'w', 'a', 's', 'd' keys.
 The player can move only one square at a time.
 
-In this stage of the project, inputs can be given using the "tastatura.txt" file.
+In this stage of the project, inputs can be given using the 
+"tastatura.txt" file.
 
 ### Current state of the project:
 
