@@ -11,7 +11,7 @@
 
 int main(){
     Position p1{1,2}, p2{5,0}, p3{3,3}, p4{4,4}, p5{1,3}, 
-            p6{1,4}, p7{5,7};
+            p6{1,4}, p7{5,7}, p8{9, 7};
     Wall zid1{p1};
     Wall zid2{p2};
     Wall zid3{p3};
@@ -25,9 +25,11 @@ int main(){
     vector_ziduri.push_back(zid5);
     
     Box cutie1{p7};
+    Box cutie2{p8};
     cutie1.set_status(false);
     std::vector<Box> vector_cutii;
     vector_cutii.push_back(cutie1);
+    vector_cutii.push_back(cutie2);
 
     Player jucator{p6};
     Board tabla{10,10,vector_ziduri,vector_cutii,jucator};
@@ -37,7 +39,6 @@ int main(){
     std::cout << zid1;
     std::cout << jucator;
     std::cout << tabla;
-
 
     jucator.power_up(10);
 

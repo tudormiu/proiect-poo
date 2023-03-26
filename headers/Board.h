@@ -15,11 +15,8 @@ class Board {
 
 public:
     Board(int lines, int columns, const std::vector<Wall> &walls, const std::vector<Box> &boxes, Player player);
-
     friend std::ostream &operator<<(std::ostream &os, const Board &st);
-
     void move_player(char input_);
-
     bool box_collisions(char input_);
 };
 

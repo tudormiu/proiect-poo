@@ -5,7 +5,7 @@ Box::Box(const Position &position, bool status, unsigned int weight) : position(
 }
 
 std::ostream& operator<<(std::ostream& os, const Box& st) {
-    os << "Box (" << st.weight << ") position: " << st.position << "\n";
+    os << "Box (" << st.weight << "): Position: " << st.position;
     return os;
 }
 

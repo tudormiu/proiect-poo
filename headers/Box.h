@@ -7,6 +7,7 @@ class Box {
     Position position;
     bool status;
     unsigned weight;
+
 public:
     explicit Box(const Position &position, bool status = false, unsigned weight = 1);
     friend std::ostream& operator<<(std::ostream& os, const Box& st);

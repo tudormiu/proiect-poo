@@ -26,11 +26,15 @@ bool Board::box_collisions(char input_) {
             temp_.update_position(input_);
             if (temp_.position_outside_limits(lines, columns))
                 return true;
-            for (Wall wall: walls) {
-                if (wall.check_collision(temp_)) {
+
+            for (Wall wall: walls)
+                if (wall.check_collision(temp_))
                     return true;
-                }
-            }
+
+            for (Box other_box: boxes)
+                if (other_box.check_collision(temp_))
+                    return true;
+
             box.move(input_);
             player.move(input_);
             return true;

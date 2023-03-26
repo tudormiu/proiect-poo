@@ -8,9 +8,7 @@ class Wall{
 
 public:
     explicit Wall(const Position &position);
-
     friend std::ostream &operator<<(std::ostream &os, const Wall &st);
-
     bool check_collision(Position const& position_);
 
 };

@@ -7,19 +7,12 @@ class Position{
 
 public:
     Position(int xAxis, int yAxis);
-
     Position(const Position& other);
-
     Position& operator=(const Position& other);
-
     ~Position();
-
     static bool comparing(Position const& position1_, Position  const& position2_);
-
     [[nodiscard]] bool position_outside_limits(int down_, int right_) const;
-
     void update_position(char input_);
-
     friend std::ostream &operator<<(std::ostream& os, const Position& st);
 };
 
