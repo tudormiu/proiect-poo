@@ -75,7 +75,7 @@ current state of the game.
 ## Tema 2
 
 #### Cerințe
-- [ ] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
+- [x] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
 - [ ] moșteniri
   - [ ] clasă cu atribut de tip pointer la o clasă de bază cu derivate
   - [ ] funcții virtuale (pure) apelate prin pointeri de bază din clasa de mai sus, constructori virtuali (clone)
@@ -104,4 +104,5 @@ current state of the game.
 
 ## Resurse
 
-- adăugați trimiteri către resursele externe care v-au ajutat sau pe care le-ați folosit
+- [Source for a part of the graphic elements](https://opengameart.org/content/metallicorange-16px-orthogonal-tileset)
+- [Wikipedia](https://en.wikipedia.org)
