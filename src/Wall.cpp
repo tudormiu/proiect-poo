@@ -1,5 +1,4 @@
 #include <utility>
-
 #include "../headers/Wall.h"
 
 Wall::Wall(const Position &position, std::string  texture_path) : position(position), texture_path(std::move(texture_path)) {}

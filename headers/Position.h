@@ -1,7 +1,6 @@
 #ifndef OOP_POSITION_H
 #define OOP_POSITION_H
 #include <iostream>
-#include <SFML/window.hpp>
 #include <SFML/Graphics.hpp>
 
 class Position{

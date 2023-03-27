@@ -1,5 +1,4 @@
 #include <utility>
-
 #include "../headers/Player.h"
 
  Player::Player(const Position &position, int orientation, unsigned power, std::string  texture_path) :
