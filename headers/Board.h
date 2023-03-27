@@ -18,6 +18,8 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Board &st);
     void move_player(char input_);
     bool box_collisions(char input_);
+    void display_empty_board(sf::RenderWindow &window) const;
+    void display_board(sf::RenderWindow &window) const;
 };
 
 

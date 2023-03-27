@@ -60,4 +60,62 @@ void Board::move_player(char input_) {
     }
 }
 
+void Board::display_empty_board(sf::RenderWindow &window) const {
+    for (int i = 0; i <= this -> lines; i++){
+        for (int j = 0; j <= this -> columns; j++) {
+            if (i == 0){
+                if (j == 0){
+                    Position temp_{i, j};
+                    temp_.display_at_position(window, "img/SS.png");
+                }
+                else if (j == columns){
+                    Position temp_{i, j};
+                    temp_.display_at_position(window,"img/SJ.png");
+                }
+                else{
+                    Position temp_{i, j};
+                    temp_.display_at_position(window,"img/SM.png");
+                }
+            }
+            else if (i == lines){
+                if (j == 0){
+                    Position temp_{i, j};
+                    temp_.display_at_position(window,"img/DS.png");
+                }
+                else if (j == columns){
+                    Position temp_{i, j};
+                    temp_.display_at_position(window,"img/DJ.png");
+                }
+                else{
+                    Position temp_{i, j};
+                    temp_.display_at_position(window,"img/DM.png");
+                }
+
+            }
+            else if (j == 0){
+                Position temp_{i, j};
+                temp_.display_at_position(window,"img/S.png");
+            }
+            else if (j == columns){
+                Position temp_{i, j};
+                temp_.display_at_position(window,"img/J.png");
+            }
+            else{
+                Position temp_{i, j};
+                temp_.display_at_position(window,"img/tile.png");
+            }
+        }
+    }
+}
+
+void Board::display_board(sf::RenderWindow &window) const {
+    display_empty_board(window);
+    for (const Wall& wall: walls)
+        wall.display_wall(window);
+    for (const Box& box: boxes)
+        box.display_box(window);
+    player.display_player(window);
+}
+
+
 

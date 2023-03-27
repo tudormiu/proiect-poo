@@ -1,7 +1,9 @@
+#include <utility>
+
 #include "../headers/Box.h"
 
-Box::Box(const Position &position, bool status, unsigned int weight) : position(position), status(status), weight(weight){
-    //std::cout << "Constructor initializare cutie\n";
+Box::Box(const Position &position, bool status, unsigned int weight, std::string  texture_path) :
+        position(position), status(status), weight(weight), texture_path(std::move(texture_path)) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Box& st) {
@@ -25,4 +27,8 @@ bool Box::check_collision(const Position &position_) {
         return true;
     }
     return false;
+}
+
+void Box::display_box(sf::RenderWindow &window) const {
+    this -> position.display_at_position(window, "img/computer.png");
 }

@@ -1,5 +1,6 @@
 #include "../headers/Position.h"
 
+
 Position::Position(int xAxis, int yAxis) : x_axis(xAxis), y_axis(yAxis) {
     //std::cout << "Constructor initializare poz\n";
 }
@@ -24,7 +25,7 @@ bool Position::comparing(Position const& position1_, Position  const& position2_
 }
 
 [[nodiscard]] bool Position::position_outside_limits(const int down_, const int right_) const{
-    if (this -> x_axis >= 0 && this -> x_axis < down_ && this -> y_axis >= 0 && this -> y_axis < right_)
+    if (this -> x_axis > 0 && this -> x_axis < down_ && this -> y_axis > 0 && this -> y_axis < right_)
         return false;
     std::cout << "Ai atins limita tablei\n";
     return true;
@@ -32,11 +33,20 @@ bool Position::comparing(Position const& position1_, Position  const& position2_
 
 void Position::update_position(const char input_) {
     this -> x_axis = this -> x_axis + (input_ == 'd' ? 1 : (input_ == 'a' ? -1 : 0));
-    this -> y_axis = this -> y_axis + (input_ == 'w' ? 1 : (input_ == 's' ? -1 : 0));
+    this -> y_axis = this -> y_axis + (input_ == 's' ? 1 : (input_ == 'w' ? -1 : 0));
 }
 
 std::ostream &operator<<(std::ostream &os, const Position &st){
     os << "x_axis: " << st.x_axis << ", y_axis: " << st.y_axis << "\n";
     return os;
+}
+
+void Position::display_at_position(sf::RenderWindow &window, const std::string& texture_path) const {
+    sf::Sprite sprite;
+    sf::Texture texture;
+    texture.loadFromFile(texture_path);
+    sprite.setTexture(texture);
+    sprite.setPosition(float(this -> x_axis) * 64,float(this -> y_axis) * 64);
+    window.draw(sprite);
 }
 

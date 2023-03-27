@@ -28,14 +28,19 @@ You can move the player using the 'w', 'a', 's', 'd' keys.
 The player can move only one square at a time.
 
 In this stage of the project, inputs can be given using the 
-"tastatura.txt" file.
+keyboard, but you have to press enter after every input.
 
 ### Current state of the project:
 
 The player can move around the board. Collisions with walls and
 the edges of the board are handled.
 
-There are no boxes yet and no grpaics. In order to test the
+Boxes are implemented, so you can move them around the board.
+Collisions with walls and the edges of the board are handled.
+There are no storage locations in this version, so the game can 
+not be won.
+
+There are no grpaics yet. In order to test the
 movement of the player, the board is printed to the console.
 
 In order to better understand the movement of the player, in case
@@ -105,4 +110,4 @@ current state of the game.
 ## Resurse
 
 - [Source for a part of the graphic elements](https://opengameart.org/content/metallicorange-16px-orthogonal-tileset)
-- [Wikipedia](https://en.wikipedia.org)
+- [README.md game description](https://en.wikipedia.org/wiki/Sokoban)

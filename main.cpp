@@ -10,8 +10,8 @@
 
 
 int main(){
-    Position p1{1,2}, p2{5,0}, p3{3,3}, p4{4,4}, p5{1,3}, 
-            p6{1,4}, p7{5,7}, p8{9, 7};
+    Position p1{1,2}, p2{5,1}, p3{3,3}, p4{4,4}, p5{1,3},
+            p6{1,4}, p7{5,7}, p8{8, 7};
     Wall zid1{p1};
     Wall zid2{p2};
     Wall zid3{p3};
@@ -42,14 +42,7 @@ int main(){
 
     jucator.power_up(10);
 
-    char input_test = '0';
-    while (input_test != 'r'){
-        std::cin >> input_test;
-        tabla.move_player(input_test);
-        std::cout << tabla;
-    }
-
-    sf::RenderWindow window(sf::VideoMode(1080, 720), "My window", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(704, 704), "My window", sf::Style::Titlebar | sf::Style::Close);
 
     while (window.isOpen())
     {
@@ -59,10 +52,120 @@ int main(){
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+        float main_delay = 0.3f;
+        float temp_delay = 0.07f;
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            tabla.move_player('a');
+
+            window.clear();
+            tabla.display_board(window);
+            window.display();
+
+            sf::Clock main_clock;
+            sf::Clock temp_clock;
+
+            while(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+                sf::Time main_elapsed = main_clock.getElapsedTime();
+                if (main_elapsed.asSeconds() > main_delay)
+                {
+                sf::Time temp_elapsed = temp_clock.getElapsedTime();
+                    if (temp_elapsed.asSeconds() > temp_delay) {
+                        tabla.move_player('a');
+                        temp_clock.restart();
+                    }
+                }
+                window.clear();
+                tabla.display_board(window);
+                window.display();
+            }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            tabla.move_player('d');
+
+            window.clear();
+            tabla.display_board(window);
+            window.display();
+
+            sf::Clock main_clock;
+            sf::Clock temp_clock;
+
+            while(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+                sf::Time main_elapsed = main_clock.getElapsedTime();
+                if (main_elapsed.asSeconds() > main_delay)
+                {
+                    sf::Time temp_elapsed = temp_clock.getElapsedTime();
+                    if (temp_elapsed.asSeconds() > temp_delay) {
+                        tabla.move_player('d');
+                        temp_clock.restart();
+                    }
+                }
+                window.clear();
+                tabla.display_board(window);
+                window.display();
+            }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            tabla.move_player('w');
+
+            window.clear();
+            tabla.display_board(window);
+            window.display();
+
+            sf::Clock main_clock;
+            sf::Clock temp_clock;
+
+            while(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+                sf::Time main_elapsed = main_clock.getElapsedTime();
+                if (main_elapsed.asSeconds() > main_delay)
+                {
+                    sf::Time temp_elapsed = temp_clock.getElapsedTime();
+                    if (temp_elapsed.asSeconds() > temp_delay) {
+                        tabla.move_player('w');
+                        temp_clock.restart();
+                    }
+                }
+                window.clear();
+                tabla.display_board(window);
+                window.display();
+            }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            tabla.move_player('s');
+
+            window.clear();
+            tabla.display_board(window);
+            window.display();
+
+            sf::Clock main_clock;
+            sf::Clock temp_clock;
+
+            while(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+                sf::Time main_elapsed = main_clock.getElapsedTime();
+                if (main_elapsed.asSeconds() > main_delay)
+                {
+                    sf::Time temp_elapsed = temp_clock.getElapsedTime();
+                    if (temp_elapsed.asSeconds() > temp_delay) {
+                        tabla.move_player('s');
+                        temp_clock.restart();
+                    }
+                }
+                window.clear();
+                tabla.display_board(window);
+                window.display();
+            }
+        }
 
         window.clear();
+        tabla.display_board(window);
         window.display();
     }
+
+
 
     return 0;
 }
