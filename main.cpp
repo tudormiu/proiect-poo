@@ -7,37 +7,37 @@
 #include "headers/Player.h"
 #include "headers/Board.h"
 #include "headers/Box.h"
+#include "headers/Landing_pad.h"
 
 
 int main(){
-    Position p1{1,2}, p2{5,1}, p3{3,3}, p4{4,4}, p5{1,3},
-            p6{1,4}, p7{5,7}, p8{8, 7};
+    Position p1{1,2}, p2{5,1}, p3{3,3}, p4{4,4}, p5{7,3},
+            p6{1,4}, p7{5,7}, p8{8, 7}, p9{7,7};
     Wall zid1{p1};
     Wall zid2{p2};
     Wall zid3{p3};
     Wall zid4{p4};
-    Wall zid5{p5};
     std::vector<Wall> vector_ziduri;
     vector_ziduri.push_back(zid1);
     vector_ziduri.push_back(zid2);
     vector_ziduri.push_back(zid3);
     vector_ziduri.push_back(zid4);
-    vector_ziduri.push_back(zid5);
+
+    Landing_pad pad1{p5};
+    Landing_pad pad2{p9};
+    std::vector<Landing_pad> vector_paduri;
+    vector_paduri.push_back(pad1);
+    vector_paduri.push_back(pad2);
     
     Box cutie1{p7};
     Box cutie2{p8};
-    cutie1.set_status(false);
     std::vector<Box> vector_cutii;
     vector_cutii.push_back(cutie1);
     vector_cutii.push_back(cutie2);
 
     Player jucator{p6};
-    Board tabla{10,10,vector_ziduri,vector_cutii,jucator};
+    Board tabla{10,10,vector_ziduri,vector_paduri,vector_cutii,jucator};
 
-    std::cout<< "\n";
-    std::cout << p1;
-    std::cout << zid1;
-    std::cout << jucator;
     std::cout << tabla;
 
     jucator.power_up(10);
@@ -63,6 +63,9 @@ int main(){
             tabla.display_board(window);
             window.display();
 
+            if(tabla.check_win())
+                return 0;
+
             sf::Clock main_clock;
             sf::Clock temp_clock;
 
@@ -79,6 +82,9 @@ int main(){
                 window.clear();
                 tabla.display_board(window);
                 window.display();
+
+                if(tabla.check_win())
+                    return 0;
             }
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -88,6 +94,9 @@ int main(){
             window.clear();
             tabla.display_board(window);
             window.display();
+
+            if(tabla.check_win())
+                return 0;
 
             sf::Clock main_clock;
             sf::Clock temp_clock;
@@ -105,6 +114,9 @@ int main(){
                 window.clear();
                 tabla.display_board(window);
                 window.display();
+
+                if(tabla.check_win())
+                    return 0;
             }
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -114,6 +126,9 @@ int main(){
             window.clear();
             tabla.display_board(window);
             window.display();
+
+            if(tabla.check_win())
+                return 0;
 
             sf::Clock main_clock;
             sf::Clock temp_clock;
@@ -131,6 +146,9 @@ int main(){
                 window.clear();
                 tabla.display_board(window);
                 window.display();
+
+                if(tabla.check_win())
+                    return 0;
             }
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -140,6 +158,9 @@ int main(){
             window.clear();
             tabla.display_board(window);
             window.display();
+
+            if(tabla.check_win())
+                return 0;
 
             sf::Clock main_clock;
             sf::Clock temp_clock;
@@ -157,15 +178,19 @@ int main(){
                 window.clear();
                 tabla.display_board(window);
                 window.display();
+
+                if(tabla.check_win())
+                    return 0;
             }
         }
 
         window.clear();
         tabla.display_board(window);
         window.display();
+
+        if(tabla.check_win())
+            return 0;
     }
-
-
 
     return 0;
 }
