@@ -12,6 +12,8 @@ class Player{
 
 public:
     explicit Player(const Position &position, int orientation = 0, unsigned power = 1, std::string  texture_path = "img/bulb_jos.png");
+    Player();
+    Player& operator=(Player const& other);
     friend std::ostream& operator<<(std::ostream& os, const Player& st);
     [[nodiscard]] Position &getPosition();
     void move(char input_);

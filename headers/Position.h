@@ -7,7 +7,7 @@ class Position{
     int x_axis, y_axis;
 
 public:
-    Position(int xAxis, int yAxis);
+    explicit Position(int xAxis = -1, int yAxis = -1);
     Position(const Position& other);
     Position& operator=(const Position& other);
     ~Position();

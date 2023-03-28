@@ -1,8 +1,10 @@
 #include <utility>
 #include "../headers/Player.h"
 
- Player::Player(const Position &position, int orientation, unsigned power, std::string  texture_path) :
+Player::Player(const Position &position, int orientation, unsigned power, std::string  texture_path) :
             position(position), orientation(orientation), power(power), texture_path(std::move(texture_path)){}
+
+Player &Player::operator=(const Player &other)= default;
 
 std::ostream& operator<<(std::ostream& os, const Player& st) {
     os << "Position: " << st.position << "\n";
@@ -42,3 +44,10 @@ void Player::display_player(sf::RenderWindow &window) const {
         this -> position.display_at_position(window, "img/bulb_off.png");
 }
 
+Player::Player() {
+    this -> position = Position(0, 0);
+    this -> orientation = 0;
+    this -> power = 1;
+    this -> texture_path = "img/bulb_jos.png";
+
+}

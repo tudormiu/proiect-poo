@@ -2,11 +2,18 @@
 #include "vector"
 
 Board::Board(int lines, int columns, const std::vector<Wall> &walls, const std::vector<Landing_pad> &landing_pads,
-             const std::vector<Box> &boxes, Player player) :
+             const std::vector<Box> &boxes, const Player& player) :
                 lines(lines), columns(columns), walls(walls), landing_pads(landing_pads), boxes(boxes),
-                player(std::move(player)) {
+                player(player) {
     //std::cout << "Constructor initializare tabla\n";
 }
+
+Board::Board() {
+    this -> lines = 0;
+    this -> columns = 0;
+}
+
+Board &Board::operator=(const Board &other) = default;
 
 std::ostream &operator<<(std::ostream &os, const Board &st) {
     os << "lines: " << st.lines << ", columns: " << st.columns << "walls:" << "\n";
