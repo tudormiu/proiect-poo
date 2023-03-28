@@ -42,6 +42,7 @@ Level::Level(const std::string& level_file_path): level_file_path(level_file_pat
     file >> player_x >> player_y;
 
     this -> player = Player(Position{player_x, player_y});
+    this -> player.power_up(1);
 
     this -> board = Board(lines, columns, walls, landing_pads, boxes, player);
 }

@@ -110,5 +110,6 @@ current state of the game.
 ## Resurse
 
 - [Source for a part of the graphic elements](https://opengameart.org/content/metallicorange-16px-orthogonal-tileset)
+- [Base for button graphics](https://www.shutterstock.com/image-vector/set-pixel-elements-retro-games-game-2200893441)
 - [README.md game description](https://en.wikipedia.org/wiki/Sokoban)
 - [Font](https://www.dafont.com/minecraft.font)
