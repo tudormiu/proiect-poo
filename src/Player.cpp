@@ -44,6 +44,14 @@ void Player::display_player(sf::RenderWindow &window) const {
         this -> position.display_at_position(window, "img/bulb_off.png");
 }
 
+Player::Player(const Player &other) {
+    this -> position = other.position;
+    this -> orientation = other.orientation;
+    this -> power = other.power;
+    this -> texture_path = other.texture_path;
+
+}
+
 Player::Player() {
     this -> position = Position(0, 0);
     this -> orientation = 0;

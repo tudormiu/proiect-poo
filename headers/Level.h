@@ -1,6 +1,7 @@
 #ifndef OOP_LEVEL_H
 #define OOP_LEVEL_H
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 #include "Board.h"
 #include "Wall.h"

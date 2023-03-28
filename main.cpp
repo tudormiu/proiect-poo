@@ -2,7 +2,7 @@
 #include "headers/Level.h"
 
 int main(){
-    Level level("levels/level1.txt");
+    Level level{"levels/level1.txt"};
 
     sf::RenderWindow window(sf::VideoMode(704, 704), "My window", sf::Style::Titlebar | sf::Style::Close);
 

@@ -3,15 +3,13 @@
 
 Level::Level(const std::string& level_file_path): level_file_path(level_file_path){
     std::ifstream file(level_file_path);
-    if (!file.is_open())
-        throw std::runtime_error("Could not open file");
 
     int level_number_;
     file >> level_number_;
     level_number = level_number_;
     std::cout<<level_number;
 
-    int lines_, columns_;\
+    int lines_, columns_;
     file >> lines_ >> columns_;
     lines = lines_;
     columns = columns_;
