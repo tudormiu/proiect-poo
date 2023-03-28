@@ -17,6 +17,6 @@ bool Wall::check_collision(Position const& position_){
     return false;
 }
 
-void Wall::display_wall(sf::RenderWindow &window) const {
-    this -> position.display_at_position(window, "img/wall.png");
+void Wall::display_wall(sf::RenderWindow &window, float offset_x, float offset_y) const {
+    this -> position.display_at_position(window, "img/wall.png", offset_x, offset_y);
 }

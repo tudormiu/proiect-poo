@@ -48,6 +48,7 @@ Level::Level(const std::string& level_file_path): level_file_path(level_file_pat
 }
 
 int Level::handle_input(sf::RenderWindow &window) {
+
     float main_delay = 0.3f;
     float temp_delay = 0.07f;
 
@@ -56,6 +57,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         this -> board.move_player('a');
 
         window.clear();
+        display_background(window);
         this -> board.display_board(window);
         window.display();
 
@@ -76,6 +78,7 @@ int Level::handle_input(sf::RenderWindow &window) {
                 }
             }
             window.clear();
+            display_background(window);
             this -> board.display_board(window);
             window.display();
 
@@ -88,6 +91,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         this -> board.move_player('d');
 
         window.clear();
+        display_background(window);
         this -> board.display_board(window);
         window.display();
 
@@ -108,6 +112,7 @@ int Level::handle_input(sf::RenderWindow &window) {
                 }
             }
             window.clear();
+            display_background(window);
             this -> board.display_board(window);
             window.display();
 
@@ -120,6 +125,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         this -> board.move_player('w');
 
         window.clear();
+        display_background(window);
         this -> board.display_board(window);
         window.display();
 
@@ -140,6 +146,7 @@ int Level::handle_input(sf::RenderWindow &window) {
                 }
             }
             window.clear();
+            display_background(window);
             this -> board.display_board(window);
             window.display();
 
@@ -152,6 +159,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         this -> board.move_player('s');
 
         window.clear();
+        display_background(window);
         this -> board.display_board(window);
         window.display();
 
@@ -172,6 +180,7 @@ int Level::handle_input(sf::RenderWindow &window) {
                 }
             }
             window.clear();
+            display_background(window);
             this -> board.display_board(window);
             window.display();
 
@@ -184,10 +193,20 @@ int Level::handle_input(sf::RenderWindow &window) {
     }
 
     window.clear();
+    display_background(window);
     this -> board.display_board(window);
     window.display();
 
     if(this -> board.check_win())
         return 1;
     return 0;
+}
+
+void Level::display_background(sf::RenderWindow &window) {
+    sf::Sprite background_sprite;
+    sf::Texture background_texture;
+    background_texture.loadFromFile("img/background.jpg");
+    background_sprite.setTexture(background_texture);
+    background_sprite.setPosition(0, 0);
+    window.draw(background_sprite);
 }

@@ -69,71 +69,63 @@ void Board::move_player(char input_) {
     }
 }
 
+float Board::calculate_offset_x(sf::RenderWindow &window, float scale) const{
+    float offset_x = (float(window.getSize().x) - 64 * scale * float(this -> lines + 1)) / 2;
+    return offset_x;
+}
+
+float Board::calculate_offset_y(sf::RenderWindow &window, float scale) const{
+    float offset_y = (float(window.getSize().y) - 64 * scale * float(this -> columns + 1)) / 2;
+    return offset_y;
+}
+
 void Board::display_empty_board(sf::RenderWindow &window) const {
-    sf::Sprite background;
-    sf::Texture texture;
-    texture.loadFromFile("img/tile.png");
-    background.setTexture(texture);
-    background.setPosition(0, 0);
-    background.setScale(0.76 * this ->lines, 0.76 * this -> columns);
-    window.draw(background);
 
-    for (int i = 0; i <= this -> lines; i++){
-        for (int j = 0; j <= this -> columns; j++) {
-            if (i == 0){
-                if (j == 0){
-                    Position temp_{i, j};
-                    temp_.display_at_position(window, "img/SS.png");
-                }
-                else if (j == columns){
-                    Position temp_{i, j};
-                    temp_.display_at_position(window,"img/SJ.png");
-                }
-                else{
-                    Position temp_{i, j};
-                    temp_.display_at_position(window,"img/SM.png");
-                }
-            }
-            else if (i == lines){
-                if (j == 0){
-                    Position temp_{i, j};
-                    temp_.display_at_position(window,"img/DS.png");
-                }
-                else if (j == columns){
-                    Position temp_{i, j};
-                    temp_.display_at_position(window,"img/DJ.png");
-                }
-                else{
-                    Position temp_{i, j};
-                    temp_.display_at_position(window,"img/DM.png");
-                }
+    float offset_x = calculate_offset_x(window);
+    float offset_y = calculate_offset_y(window);
 
-            }
-            else if (j == 0){
-                Position temp_{i, j};
-                temp_.display_at_position(window,"img/S.png");
-            }
-            else if (j == columns){
-                Position temp_{i, j};
-                temp_.display_at_position(window,"img/J.png");
-            }
-            else{
-                //Position temp_{i, j};
-                //temp_.display_at_position(window,"img/tile.png");
-            }
-        }
-    }
+    Position temporary{1, 1};
+    temporary.display_at_position(window, "img/tile.png", offset_x ,offset_y, 0.76,
+                                  float(this -> lines-1), float(this -> columns-1));
+
+    Position temp_00{0, 0};
+    temp_00.display_at_position(window, "img/SS.png", offset_x, offset_y);
+
+    Position temp_0c{0, columns};
+    temp_0c.display_at_position(window, "img/SJ.png", offset_x, offset_y);
+
+    Position temp_l0{lines, 0};
+    temp_l0.display_at_position(window, "img/DS.png", offset_x, offset_y);
+
+    Position temp_lc{lines, columns};
+    temp_lc.display_at_position(window, "img/DJ.png", offset_x, offset_y);
+
+    Position temp_s{1,0};
+    temp_s.display_at_position(window, "img/S.png", offset_x, offset_y, 0.76, float(this -> lines-1));
+
+    Position temp_j{1, columns};
+    temp_j.display_at_position(window, "img/J.png", offset_x, offset_y, 0.76, float(this -> lines-1));
+
+    Position temp_sm{lines, 1};
+    temp_sm.display_at_position(window, "img/SM.png", offset_x, offset_y, 0.76, 1, float(this -> columns-1));
+
+    Position temp_dm{0, 1};
+    temp_dm.display_at_position(window, "img/DM.png", offset_x, offset_y, 0.76, 1, float(this -> columns-1));
 }
 
 void Board::display_board(sf::RenderWindow &window) const {
+
+    float offset_x = calculate_offset_x(window);
+    float offset_y = calculate_offset_y(window);
+
     display_empty_board(window);
     for (const Wall& wall: walls)
-        wall.display_wall(window);
+        wall.display_wall(window, offset_x, offset_y);
     for (const Landing_pad& landing_pad: landing_pads)
-        landing_pad.display_landing_pad(window);
+        landing_pad.display_landing_pad(window, offset_x, offset_y);
     for (const Box& box: boxes)
-        box.display_box(window);
-    player.display_player(window);
+        box.display_box(window, offset_x, offset_y);
+    player.display_player(window, offset_x, offset_y);
 }
 
 bool Board::check_win() const {

@@ -7,8 +7,7 @@ int main(){
     file = "levels/level2.txt";
     Level level2(file);
 
-    sf::RenderWindow window(sf::VideoMode(1366, 768), "My window", sf::Style::Titlebar | sf::Style::Close);
-
+    sf::RenderWindow window(sf::VideoMode(1440, 810), "My window", sf::Style::Titlebar | sf::Style::Close);
 
     while (window.isOpen())
     {

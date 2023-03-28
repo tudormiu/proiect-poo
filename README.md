@@ -113,3 +113,4 @@ current state of the game.
 - [Base for button graphics](https://www.shutterstock.com/image-vector/set-pixel-elements-retro-games-game-2200893441)
 - [README.md game description](https://en.wikipedia.org/wiki/Sokoban)
 - [Font](https://www.dafont.com/minecraft.font)
+- [Game Backgroud](https://www.freepik.com/free-vector/mars-surface-alien-planet-landscape_26796705.htm#query=game%20background&position=36&from_view=keyword&track=ais)

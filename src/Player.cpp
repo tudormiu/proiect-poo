@@ -31,17 +31,17 @@ void Player::power_up(int amount) {
     this -> power+= amount;
 }
 
-void Player::display_player(sf::RenderWindow &window) const {
+void Player::display_player(sf::RenderWindow &window, float offset_x, float offset_y) const {
     if (this -> orientation == 1)
-        this -> position.display_at_position(window, "img/bulb_jos.png");
+        this -> position.display_at_position(window, "img/bulb_jos.png", offset_x, offset_y);
     else if (this -> orientation == 2)
-        this -> position.display_at_position(window, "img/bulb_sus.png");
+        this -> position.display_at_position(window, "img/bulb_sus.png", offset_x, offset_y);
     else if (this -> orientation == 3)
-        this -> position.display_at_position(window, "img/bulb_stanga.png");
+        this -> position.display_at_position(window, "img/bulb_stanga.png", offset_x, offset_y);
     else if (this -> orientation == 4)
-        this -> position.display_at_position(window, "img/bulb_dreapta.png");
+        this -> position.display_at_position(window, "img/bulb_dreapta.png", offset_x, offset_y);
     else
-        this -> position.display_at_position(window, "img/bulb_off.png");
+        this -> position.display_at_position(window, "img/bulb_off.png", offset_x, offset_y);
 }
 
 Player::Player(const Player &other) {

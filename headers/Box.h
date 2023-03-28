@@ -18,7 +18,7 @@ public:
     void set_status(bool status_);
     [[nodiscard]] bool get_status() const;
     bool check_collision(Position const& position_);
-    void display_box(sf::RenderWindow &window) const;
+    void display_box(sf::RenderWindow &window, float offset_x, float offset_y) const;
 };
 
 

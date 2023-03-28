@@ -25,6 +25,9 @@ public:
     void display_empty_board(sf::RenderWindow &window) const;
     void display_board(sf::RenderWindow &window) const;
     [[nodiscard]] bool check_win() const;
+
+    float calculate_offset_x(sf::RenderWindow &window, float scale = 0.76) const;
+    float calculate_offset_y(sf::RenderWindow &window, float scale = 0.76) const;
 };
 
 

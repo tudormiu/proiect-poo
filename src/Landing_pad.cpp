@@ -8,8 +8,8 @@ std::ostream &operator<<(std::ostream &os, const Landing_pad &st) {
     return os;
 }
 
-void Landing_pad::display_landing_pad(sf::RenderWindow &window) const {
-    this -> position.display_at_position(window, "img/landing_pad.png");
+void Landing_pad::display_landing_pad(sf::RenderWindow &window, float offset_x, float offset_y) const {
+    this -> position.display_at_position(window, "img/landing_pad.png", offset_x, offset_y);
 }
 
 bool Landing_pad::is_active() const {

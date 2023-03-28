@@ -40,9 +40,9 @@ bool Box::check_collision(const Position &position_) {
     return false;
 }
 
-void Box::display_box(sf::RenderWindow &window) const {
+void Box::display_box(sf::RenderWindow &window, float offset_x, float offset_y) const {
     if(this -> status)
-        this -> position.display_at_position(window, "img/computer_on.png");
+        this -> position.display_at_position(window, "img/computer_on.png", offset_x, offset_y);
     else
-        this -> position.display_at_position(window, "img/computer.png");
+        this -> position.display_at_position(window, "img/computer.png", offset_x, offset_y);
 }

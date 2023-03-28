@@ -41,13 +41,14 @@ std::ostream &operator<<(std::ostream &os, const Position &st){
     return os;
 }
 
-void Position::display_at_position(sf::RenderWindow &window, const std::string& texture_path,float offset_x, float offset_y, float scale) const {
+void Position::display_at_position(sf::RenderWindow &window, const std::string& texture_path,
+                                   float offset_x, float offset_y, float scale, float scale_x, float scale_y) const {
     sf::Sprite sprite;
     sf::Texture texture;
     texture.loadFromFile(texture_path);
     sprite.setTexture(texture);
-    sprite.setPosition((float(this -> x_axis) * 64 +offset_x) * scale,(float(this -> y_axis) * 64 +offset_y) * scale);
-    sprite.setScale(scale, scale);
+    sprite.setPosition(((float(this -> x_axis) * 64) * scale) + offset_x,((float(this -> y_axis) * 64) * scale) + offset_y);
+    sprite.setScale(scale_x * scale, scale_y * scale);
     window.draw(sprite);
 }
 

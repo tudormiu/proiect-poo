@@ -19,7 +19,7 @@ public:
     [[nodiscard]] Position &getPosition();
     void move(char input_);
     void power_up(int amount = 1);
-    void display_player(sf::RenderWindow &window) const;
+    void display_player(sf::RenderWindow &window, float offset_x, float offset_y) const;
 
 };
 
