@@ -179,6 +179,9 @@ int Level::handle_input(sf::RenderWindow &window) {
                 return 1;
         }
     }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+        return 0;
+    }
 
     window.clear();
     this -> board.display_board(window);
@@ -187,5 +190,4 @@ int Level::handle_input(sf::RenderWindow &window) {
     if(this -> board.check_win())
         return 1;
     return 0;
-
 }

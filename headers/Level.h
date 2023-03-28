@@ -9,7 +9,6 @@
 #include "Box.h"
 #include "Landing_pad.h"
 
-
 class Level {
     Board board;
     std::vector<Wall> walls;
@@ -25,7 +24,7 @@ class Level {
 
     public:
 
-    [[maybe_unused]] explicit Level(const std::string& level_file_path);
+    explicit Level(const std::string& level_file_path);
     int handle_input(sf::RenderWindow &window);
 };
 

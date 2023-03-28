@@ -2,7 +2,10 @@
 #include "headers/Level.h"
 
 int main(){
-    Level level{"levels/level1.txt"};
+    std::string file = "levels/level1.txt";
+    Level level(file);
+    file = "levels/level2.txt";
+    Level level2(file);
 
     sf::RenderWindow window(sf::VideoMode(704, 704), "My window", sf::Style::Titlebar | sf::Style::Close);
 
@@ -14,8 +17,9 @@ int main(){
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        level.handle_input(window);
+        while(level.handle_input(window) == 0){}
+        while(level2.handle_input(window) == 0){}
+        break;
     }
-
     return 0;
 }

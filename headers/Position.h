@@ -15,7 +15,7 @@ public:
     [[nodiscard]] bool position_outside_limits(int down_, int right_) const;
     void update_position(char input_);
     friend std::ostream &operator<<(std::ostream& os, const Position& st);
-    void display_at_position(sf::RenderWindow &window, const std::string& texture_path) const;
+    void display_at_position(sf::RenderWindow &window, const std::string& texture_path, float scale = 0.76) const;
 };
 
 #endif //OOP_POSITION_H
