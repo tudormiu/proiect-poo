@@ -70,6 +70,14 @@ void Board::move_player(char input_) {
 }
 
 void Board::display_empty_board(sf::RenderWindow &window) const {
+    sf::Sprite background;
+    sf::Texture texture;
+    texture.loadFromFile("img/tile.png");
+    background.setTexture(texture);
+    background.setPosition(0, 0);
+    background.setScale(0.76 * this ->lines, 0.76 * this -> columns);
+    window.draw(background);
+
     for (int i = 0; i <= this -> lines; i++){
         for (int j = 0; j <= this -> columns; j++) {
             if (i == 0){
@@ -110,8 +118,8 @@ void Board::display_empty_board(sf::RenderWindow &window) const {
                 temp_.display_at_position(window,"img/J.png");
             }
             else{
-                Position temp_{i, j};
-                temp_.display_at_position(window,"img/tile.png");
+                //Position temp_{i, j};
+                //temp_.display_at_position(window,"img/tile.png");
             }
         }
     }

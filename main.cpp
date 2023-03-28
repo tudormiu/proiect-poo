@@ -7,7 +7,8 @@ int main(){
     file = "levels/level2.txt";
     Level level2(file);
 
-    sf::RenderWindow window(sf::VideoMode(704, 704), "My window", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(1366, 768), "My window", sf::Style::Titlebar | sf::Style::Close);
+
 
     while (window.isOpen())
     {
@@ -17,9 +18,19 @@ int main(){
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        while(level.handle_input(window) == 0){}
-        while(level2.handle_input(window) == 0){}
-        break;
+        if(level.handle_input(window) == 1)
+            break;
+    }
+    while (window.isOpen())
+    {
+        sf::Event event{};
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        if(level2.handle_input(window) == 1)
+            break;
     }
     return 0;
 }
