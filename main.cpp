@@ -44,8 +44,8 @@ int main(){
         }
     }
 
-    int selected_level = 0;
     if (pressed == 1) {
+        int selected_level = 0;
         while (window.isOpen()) {
             window.clear();
             sf::Event event{};
