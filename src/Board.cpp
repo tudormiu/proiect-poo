@@ -91,7 +91,7 @@ void Board::display_empty_board(sf::RenderWindow &window) const {
     //float offset_y = calculate_offset_y(window);
 
     Position temporary{1, 1};
-    temporary.display_at_position(window, "img/tile.png", offset_x ,offset_y, 0.76,
+    temporary.display_at_position(window, "img/tile.png", float(offset_x) ,float(offset_y), float(0.76),
                                   float(this -> lines-1), float(this -> columns-1));
 
     Position temp_00{0, 0};
@@ -107,16 +107,16 @@ void Board::display_empty_board(sf::RenderWindow &window) const {
     temp_lc.display_at_position(window, "img/DJ.png", offset_x, offset_y);
 
     Position temp_s{1,0};
-    temp_s.display_at_position(window, "img/S.png", offset_x, offset_y, 0.76, float(this -> lines-1));
+    temp_s.display_at_position(window, "img/S.png", offset_x, offset_y, float(0.76), float(this -> lines-1));
 
     Position temp_j{1, columns};
-    temp_j.display_at_position(window, "img/J.png", offset_x, offset_y, 0.76, float(this -> lines-1));
+    temp_j.display_at_position(window, "img/J.png", offset_x, offset_y, float(0.76), float(this -> lines-1));
 
     Position temp_sm{lines, 1};
-    temp_sm.display_at_position(window, "img/SM.png", offset_x, offset_y, 0.76, 1, float(this -> columns-1));
+    temp_sm.display_at_position(window, "img/SM.png", offset_x, offset_y, float(0.76), 1, float(this -> columns-1));
 
     Position temp_dm{0, 1};
-    temp_dm.display_at_position(window, "img/DM.png", offset_x, offset_y, 0.76, 1, float(this -> columns-1));
+    temp_dm.display_at_position(window, "img/DM.png", offset_x, offset_y, float(0.76), 1, float(this -> columns-1));
 }
 
 void Board::display_board(sf::RenderWindow &window) const {
