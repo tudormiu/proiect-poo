@@ -189,7 +189,13 @@ int Level::handle_input(sf::RenderWindow &window) {
         }
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-        return 0;
+        while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){}
+        reset_level(*this);
+    }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+        while (sf::Keyboard::isKeyPressed(sf::Keyboard::R)){}
+        return 2;
     }
 
     window.clear();
@@ -209,4 +215,9 @@ void Level::display_background(sf::RenderWindow &window) {
     background_sprite.setTexture(background_texture);
     background_sprite.setPosition(0, 0);
     window.draw(background_sprite);
+}
+
+void Level::reset_level(Level &level) {
+    Level temp_level(level.level_file_path);
+    level = temp_level;
 }

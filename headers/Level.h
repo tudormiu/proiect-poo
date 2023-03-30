@@ -26,7 +26,8 @@ class Level {
 
     explicit Level(const std::string& level_file_path);
     int handle_input(sf::RenderWindow &window);
-    static void display_background(sf::RenderWindow &window) ;
+    static void display_background(sf::RenderWindow &window);
+    static void reset_level(Level &level);
 };
 
 #endif //OOP_LEVEL_H

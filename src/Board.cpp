@@ -6,14 +6,16 @@ Board::Board(int lines, int columns, const std::vector<Wall> &walls, const std::
                 lines(lines), columns(columns), walls(walls), landing_pads(landing_pads), boxes(boxes),
                 player(player) {
     //std::cout << "Constructor initializare tabla\n";
+    this -> offset_x = calculate_offset_x();
+    this -> offset_y = calculate_offset_y();
 }
 
 Board::Board() {
     this -> lines = 0;
     this -> columns = 0;
+    this -> offset_x = 0;
+    this -> offset_y = 0;
 }
-
-Board &Board::operator=(const Board &other) = default;
 
 std::ostream &operator<<(std::ostream &os, const Board &st) {
     os << "lines: " << st.lines << ", columns: " << st.columns << "walls:" << "\n";
@@ -69,20 +71,24 @@ void Board::move_player(char input_) {
     }
 }
 
-float Board::calculate_offset_x(sf::RenderWindow &window, float scale) const{
-    float offset_x = (float(window.getSize().x) - 64 * scale * float(this -> lines + 1)) / 2;
-    return offset_x;
+//float Board::calculate_offset_x(sf::RenderWindow &window, float scale) const{
+float Board::calculate_offset_x(float scale) const{
+        //float offset_ = (float(window.getSize().x) - 64 * scale * float(this -> lines + 1)) / 2;
+        float offset_ = (float(1440) - 64 * scale * float(this -> lines + 1)) / 2;
+        return offset_;
 }
 
-float Board::calculate_offset_y(sf::RenderWindow &window, float scale) const{
-    float offset_y = (float(window.getSize().y) - 64 * scale * float(this -> columns + 1)) / 2;
-    return offset_y;
+//float Board::calculate_offset_y(sf::RenderWindow &window, float scale) const{
+float Board::calculate_offset_y(float scale) const{
+    //float offset_ = (float(window.getSize().y) - 64 * scale * float(this -> columns + 1)) / 2;
+    float offset_ = (float(810) - 64 * scale * float(this -> columns + 1)) / 2;
+    return offset_;
 }
 
 void Board::display_empty_board(sf::RenderWindow &window) const {
 
-    float offset_x = calculate_offset_x(window);
-    float offset_y = calculate_offset_y(window);
+    //float offset_x = calculate_offset_x(window);
+    //float offset_y = calculate_offset_y(window);
 
     Position temporary{1, 1};
     temporary.display_at_position(window, "img/tile.png", offset_x ,offset_y, 0.76,
@@ -115,8 +121,8 @@ void Board::display_empty_board(sf::RenderWindow &window) const {
 
 void Board::display_board(sf::RenderWindow &window) const {
 
-    float offset_x = calculate_offset_x(window);
-    float offset_y = calculate_offset_y(window);
+    //float offset_x = calculate_offset_x(window);
+    //float offset_y = calculate_offset_y(window);
 
     display_empty_board(window);
     for (const Wall& wall: walls)

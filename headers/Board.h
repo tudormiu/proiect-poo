@@ -14,11 +14,11 @@ class Board {
     std::vector<Landing_pad> landing_pads;
     std::vector<Box> boxes;
     Player player;
+    float offset_x, offset_y;
 
 public:
     Board(int lines, int columns, const std::vector<Wall> &walls, const std::vector<Landing_pad> &landing_pads, const std::vector<Box> &boxes, const Player &player);
     Board();
-    Board& operator=(Board const& other);
     friend std::ostream &operator<<(std::ostream &os, const Board &st);
     void move_player(char input_);
     bool box_collisions(char input_);
@@ -26,8 +26,11 @@ public:
     void display_board(sf::RenderWindow &window) const;
     [[nodiscard]] bool check_win() const;
 
-    float calculate_offset_x(sf::RenderWindow &window, float scale = 0.76) const;
-    float calculate_offset_y(sf::RenderWindow &window, float scale = 0.76) const;
+    [[nodiscard]] float calculate_offset_x(float scale = 0.76) const;
+    [[nodiscard]] float calculate_offset_y(float scale = 0.76) const;
+
+    //float calculate_offset_x(sf::RenderWindow &window, float scale = 0.76) const;
+    //float calculate_offset_y(sf::RenderWindow &window, float scale = 0.76) const;
 };
 
 

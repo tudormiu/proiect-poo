@@ -110,7 +110,8 @@ current state of the game.
 ## Resurse
 
 - [Source for a part of the graphic elements](https://opengameart.org/content/metallicorange-16px-orthogonal-tileset)
-- [Base for button graphics](https://www.shutterstock.com/image-vector/set-pixel-elements-retro-games-game-2200893441)
+- [Button locks](http://pixelartmaker.com/art/cb0ee869c349919)
 - [README.md game description](https://en.wikipedia.org/wiki/Sokoban)
 - [Font](https://www.dafont.com/minecraft.font)
-- [Game Backgroud](https://www.freepik.com/free-vector/mars-surface-alien-planet-landscape_26796705.htm#query=game%20background&position=36&from_view=keyword&track=ais)
+- [Levels](http://www.game-sokoban.com/)
+- [Lecels](https://sokoban.info/)
