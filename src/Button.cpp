@@ -123,4 +123,20 @@ int Menu::handle_menu(sf::RenderWindow &window) {
     return 0;
 }
 
+int Menu::display_menu(sf::RenderWindow &window, Menu menu) {
+    int selected_level;
+    while (window.isOpen()) {
+        window.clear();
+        sf::Event event{};
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        selected_level = menu.handle_menu(window);
+        if(selected_level)
+            return selected_level;
+    }
+    return 0;
+}
+
 

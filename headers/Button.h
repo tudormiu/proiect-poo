@@ -29,6 +29,7 @@ class Menu{
 public:
     explicit Menu(std::vector<Button> buttons_, const std::string& background_path = "img/title.jpg");
     int handle_menu(sf::RenderWindow &window);
+    static int display_menu(sf::RenderWindow &window, Menu menu);
 };
 
 #endif //OOP_BUTTON_H

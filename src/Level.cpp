@@ -217,6 +217,21 @@ void Level::display_background(sf::RenderWindow &window) {
     window.draw(background_sprite);
 }
 
+int Level::display_level(sf::RenderWindow &window, Level level) {
+    while (window.isOpen()) {
+        window.clear();
+        sf::Event event{};
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        if(level.handle_input(window))
+            return 1;
+    }
+    return 0;
+}
+
+
 void Level::reset_level(Level &level) {
     Level temp_level(level.level_file_path);
     level = temp_level;
