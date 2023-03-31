@@ -18,7 +18,8 @@ public:
     explicit Button(float x_axis, float y_axis, std::string text, int type = 1, bool active = true);
     void display_button(sf::RenderWindow &window, bool hover = false);
     int handle_button(sf::RenderWindow &window);
-    //void set_active(bool active_);
+    static void set_active(Button &buton, bool active_);
+    friend std::ostream &operator<<(std::ostream &os, const Button &st);
 };
 
 class Menu{
@@ -30,6 +31,7 @@ public:
     explicit Menu(std::vector<Button> buttons_, const std::string& background_path = "img/title.jpg");
     int handle_menu(sf::RenderWindow &window);
     static int display_menu(sf::RenderWindow &window, Menu menu);
+    void activate_buttons(int index);
 };
 
 #endif //OOP_BUTTON_H

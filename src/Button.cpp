@@ -37,7 +37,6 @@ Button::Button(float x_axis, float y_axis, std::string text, int type, bool acti
             this -> texture_hover = std::string ("img/buttons/square_button_disabled.png");
         }
     }
-    
 }
 
 void Button::display_button(sf::RenderWindow &window, bool hover) {
@@ -86,24 +85,45 @@ int Button::handle_button(sf::RenderWindow &window) {
     sf::Texture texture;
     texture.loadFromFile(this -> texture_default);
     sf::Vector2u dimensiune = texture.getSize();
-    if (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < this -> x_axis + float(dimensiune.x) and
-        float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < this -> y_axis + float(dimensiune.y)) {
-        display_button(window, true);
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            while (sf::Mouse::isButtonPressed(sf::Mouse::Left)){}
-            return 1 ;
+    bool hover = false;
+    if(active){
+        if (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < this -> x_axis + float(dimensiune.x) and
+            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < this -> y_axis + float(dimensiune.y)) {
+            hover = true;
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
+                return 1;
+            }
         }
     }
-    else
-        display_button(window);
+    display_button(window, hover);
+
     return 0;
 }
 
-/*
-void Button::set_active(bool active_) {
-    this -> active = active_;
+void Button::set_active(Button &button, bool active_) {
+    button.active = active_;
+    if (button.type == 1){
+        button.texture_default = std::string ("img/buttons/button_default.png");
+        button.texture_hover = std::string ("img/buttons/button_hover.png");
+    }
+
+    if (button.type == 2){
+        button.texture_default = std::string ("img/buttons/big_button_default.png");
+        button.texture_hover = std::string ("img/buttons/big_button_hover.png");
+
+    }
+
+    if (button.type == 3){
+        button.texture_default = std::string ("img/buttons/square_button_default.png");
+        button.texture_hover = std::string ("img/buttons/square_button_hover.png");
+    }
 }
-*/
+
+std::ostream &operator<<(std::ostream &os, const Button &st) {
+    os << "x_axis: " << st.x_axis << " y_axis: " << st.y_axis << " text: " << st.text << " type: " << st.type << " active: " << st.active;
+    return os;
+}
 
 Menu::Menu(std::vector<Button> buttons, const std::string& background_path) : buttons(std::move(buttons)) {
     this -> background_texture.loadFromFile(background_path);
@@ -137,6 +157,11 @@ int Menu::display_menu(sf::RenderWindow &window, Menu menu) {
             return selected_level;
     }
     return 0;
+}
+
+void Menu::activate_buttons(int index) {
+    for (int i = 0; i <= index; i++)
+        Button::set_active(buttons[i], true);
 }
 
 

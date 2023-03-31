@@ -188,13 +188,13 @@ int Level::handle_input(sf::RenderWindow &window) {
                 return 1;
         }
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-        while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){}
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+        while (sf::Keyboard::isKeyPressed(sf::Keyboard::R)){}
         reset_level(*this);
     }
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
-        while (sf::Keyboard::isKeyPressed(sf::Keyboard::R)){}
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+        while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){}
         return 2;
     }
 
@@ -225,8 +225,9 @@ int Level::display_level(sf::RenderWindow &window, Level level) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        if(level.handle_input(window))
-            return 1;
+        int result = level.handle_input(window);
+        if (result)
+            return result;
     }
     return 0;
 }

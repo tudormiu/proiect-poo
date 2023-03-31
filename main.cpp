@@ -25,24 +25,63 @@ int main(){
 
     std::vector<Button> level_buttons;
     for (int i = 0; i < 10; i++){
-        level_buttons.emplace_back(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)),  std::to_string(i + 1), 3);
+        level_buttons.emplace_back(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)),  std::to_string(i + 1), 3,
+                                   false);
     }
 
     Menu level_menu(level_buttons, "img/background_levels.jpg");
 
-    int pressed = Menu::display_menu(window, main_menu);
 
-    if (pressed == 1) {
-        int selected_level = Menu::display_menu(window, level_menu);
-        if(selected_level)
-            Level ::display_level(window, levels[selected_level - 1]);
-    }
-    else if (pressed == 2) {
-        std::ofstream fout("game_data.txt");
-        fout << "0";
-        fout.close();
-    }
-    window.display();
+    bool updated = false;
+    int pressed = 0;
+    int selected_level = 0;
+    while (window.isOpen()) {
+        window.clear();
+        sf::Event event{};
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        if(!pressed)
+            pressed = Menu::display_menu(window, main_menu);
 
+        int unlocked_levels = 0;
+        if (pressed == 1) {
+            if(!updated) {
+                std::ifstream data("game_data.txt");
+                data >> unlocked_levels;
+                level_menu.activate_buttons(unlocked_levels);
+                updated = true;
+            }
+
+            if(selected_level == false)
+                selected_level = Menu::display_menu(window, level_menu);
+
+            if(selected_level)
+            {
+                int status = Level ::display_level(window, levels[selected_level - 1]);
+                if(status)
+                {
+                    if(status == 1)
+                    {
+                        std::ofstream fout("game_data.txt");
+                        fout << std::max(unlocked_levels, selected_level);
+                    }
+
+                    selected_level = 0;
+                    updated = false;
+                }
+            }
+        }
+
+        if (pressed == 2) {
+            std::ofstream fout("game_data.txt");
+            fout << "0";
+            fout.close();
+            pressed = 0;
+        }
+
+        window.display();
+    }
     return 0;
 }
