@@ -45,8 +45,8 @@ int main(){
         if(!pressed)
             pressed = Menu::display_menu(window, main_menu);
 
-        int unlocked_levels = 0;
         if (pressed == 1) {
+            int unlocked_levels = 0;
             if(!updated) {
                 std::ifstream data("game_data.txt");
                 data >> unlocked_levels;
