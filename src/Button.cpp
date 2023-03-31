@@ -2,60 +2,80 @@
 
 #include "../headers/Button.h"
 
-Button::Button(const sf::Vector2f &position, std::string text, int type, bool active):
-            position(position), text(std::move(text)), active(active) {
+Button::Button(float x_axis, float y_axis, std::string text, int type, bool active):
+    x_axis(x_axis), y_axis(y_axis), text(std::move(text)), type(type), active(active){
 
     if (type == 1){
         if (active){
-            this -> texture_default.loadFromFile("img/buttons/button_default.png");
-            this -> texture_hover.loadFromFile("img/buttons/button_hover.png");
+            this -> texture_default = std::string ("img/buttons/button_default.png");
+            this -> texture_hover = std::string ("img/buttons/button_hover.png");
         }
         else{
-            this -> texture_default.loadFromFile("img/buttons/button_disabled.png");
-            this -> texture_hover.loadFromFile("img/buttons/button_disabled.png");
+            this -> texture_default = std::string ("img/buttons/button_disabled.png");
+            this -> texture_hover = std::string ("img/buttons/button_disabled.png");
         }
-
-
     }
 
     if (type == 2){
         if (active){
-            this -> texture_default.loadFromFile("img/buttons/big_button_default.png");
-            this -> texture_hover.loadFromFile("img/buttons/big_button_hover.png");
+            this -> texture_default = std::string ("img/buttons/big_button_default.png");
+            this -> texture_hover = std::string ("img/buttons/big_button_hover.png");
         }
         else{
-            this -> texture_default.loadFromFile("img/buttons/big_button_disabled.png");
-            this -> texture_hover.loadFromFile("img/buttons/big_button_disabled.png");
+            this -> texture_default = std::string ("img/buttons/big_button_disabled.png");
+            this -> texture_hover = std::string ("img/buttons/big_button_disabled.png");
         }
-
     }
-
-    this -> sprite_default.setTexture(texture_default);
-    this -> sprite_default.setPosition(position);
-
-    this -> sprite_hover.setTexture(texture_hover);
-    this -> sprite_hover.setPosition(position);
+    
+    if (type == 3){
+        if (active){
+            this -> texture_default = std::string ("img/buttons/square_button_default.png");
+            this -> texture_hover = std::string ("img/buttons/square_button_hover.png");
+        }
+        else{
+            this -> texture_default = std::string ("img/buttons/square_button_disabled.png");
+            this -> texture_hover = std::string ("img/buttons/square_button_disabled.png");
+        }
+    }
+    
 }
 
 void Button::display_button(sf::RenderWindow &window, bool hover) {
 
+    sf::Vector2f position;
+    position = {x_axis, y_axis};
+
+    sf::Sprite sprite;
+    sf::Texture texture;
     sf::Text display_text;
-    display_text.setString(text);
-    display_text.setCharacterSize(46);
     sf::Font font;
+
+    texture.loadFromFile(this -> texture_default);
+    sprite.setPosition(position);
     font.loadFromFile("minecraft.ttf");
+
+    display_text.setString(text);
+    if (this -> type == 1 or this -> type == 2)
+        display_text.setCharacterSize(46);
+    else
+        display_text.setCharacterSize(80);
     display_text.setFont(font);
     display_text.setFillColor(sf::Color::White);
 
     sf::Vector2f center;
-    center = {position.x + (float(this -> texture_default.getSize().x) - display_text.getGlobalBounds().getSize().x) / 2, position.y + float(4.5)};
+    if( this -> type == 1 or this -> type == 2)
+        center = {position.x + (float(texture.getSize().x) - display_text.getGlobalBounds().getSize().x) / 2, position.y + float(4.5)};
+    else
+        center = {position.x + (float(texture.getSize().x) - display_text.getGlobalBounds().getSize().x) / 2, position.y + float(15)};
+
 
     display_text.setPosition(center);
     if (hover)
-        window.draw(this -> sprite_hover);
-
+        texture.loadFromFile(this -> texture_hover);
     else
-        window.draw(this -> sprite_default);
+        texture.loadFromFile(this -> texture_default);
+    sprite.setTexture(texture);
+    window.draw(sprite);
     if(active)
         window.draw(display_text);
 }
@@ -63,9 +83,11 @@ void Button::display_button(sf::RenderWindow &window, bool hover) {
 
 int Button::handle_button(sf::RenderWindow &window) {
     sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
-    sf::Vector2u dimensiune = this -> texture_default.getSize();
-    if (float(mouse_position.x) > this -> position.x && float(mouse_position.x) < this -> position.x + float(dimensiune.x) and
-        float(mouse_position.y) > this -> position.y && float(mouse_position.y) < this -> position.y + float(dimensiune.y)) {
+    sf::Texture texture;
+    texture.loadFromFile(this -> texture_default);
+    sf::Vector2u dimensiune = texture.getSize();
+    if (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < this -> x_axis + float(dimensiune.x) and
+        float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < this -> y_axis + float(dimensiune.y)) {
         display_button(window, true);
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             while (sf::Mouse::isButtonPressed(sf::Mouse::Left)){}
@@ -100,4 +122,5 @@ int Menu::handle_menu(sf::RenderWindow &window) {
     window.display();
     return 0;
 }
+
 

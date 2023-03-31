@@ -5,19 +5,17 @@
 
 
 class Button {
-    sf::Vector2f position;
+    float x_axis, y_axis;
     std::string text;
 
+    int type;
     bool active;
 
-    sf::Texture texture_default;
-    sf::Sprite sprite_default;
-
-    sf::Texture texture_hover;
-    sf::Sprite sprite_hover;
+    std::string texture_default;
+    std::string texture_hover;
 
 public:
-    explicit Button(const sf::Vector2f &position, std::string text, int type = 1, bool active = true);
+    explicit Button(float x_axis, float y_axis, std::string text, int type = 1, bool active = true);
     void display_button(sf::RenderWindow &window, bool hover = false);
     int handle_button(sf::RenderWindow &window);
     //void set_active(bool active_);

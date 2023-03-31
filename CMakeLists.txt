@@ -12,7 +12,7 @@ option(WARNINGS_AS_ERRORS "Treat warnings as errors" OFF)
 
 # disable sanitizers when releasing executables without explicitly requested debug info
 # use generator expressions to set flags correctly in both single and multi config generators
-set(is_debug "$<CONFIG:Debug>")
+set(is_debug "$<CONFIG>")
 set(is_rel_with_deb "$<CONFIG:RelWithDebInfo>")
 set(debug_mode "$<OR:${is_debug},${is_rel_with_deb}>")
 

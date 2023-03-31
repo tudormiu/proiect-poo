@@ -6,8 +6,8 @@
 int main(){
     sf::RenderWindow window(sf::VideoMode(1440, 810), "My window", sf::Style::Titlebar | sf::Style::Close);
 
-    Button button1(sf::Vector2f(464, 460), std::string("PLAY!"),2);
-    Button button2(sf::Vector2f(464, 560), std::string("ERASE DATA"),2);
+    Button button1(464, 460, std::string("PLAY!"),2);
+    Button button2(464, 560, std::string("ERASE DATA"),2);
 
     std::vector<Button> buttons_menu;
     buttons_menu.emplace_back(button1);
@@ -24,11 +24,11 @@ int main(){
     levels.emplace_back(std::string("levels/level6.txt"));
 
     std::vector<Button> level_buttons;
-    for (int i = 0; i < 6; i++){
-        level_buttons.emplace_back(sf::Vector2f(800, 260 + 100 * float(i)), std::string("LEVEL " + std::to_string(i + 1)),1);
+    for (int i = 0; i < 10; i++){
+        level_buttons.emplace_back(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)),  std::to_string(i + 1), 3);
     }
 
-    Menu level_menu(level_buttons);
+    Menu level_menu(level_buttons, "img/background_levels.jpg");
 
     int pressed = 0;
     while (window.isOpen()) {
