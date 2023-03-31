@@ -144,7 +144,6 @@ int Menu::handle_menu(sf::RenderWindow &window) {
 }
 
 int Menu::display_menu(sf::RenderWindow &window, Menu menu) {
-    int selected_level;
     while (window.isOpen()) {
         window.clear();
         sf::Event event{};
@@ -152,7 +151,7 @@ int Menu::display_menu(sf::RenderWindow &window, Menu menu) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        selected_level = menu.handle_menu(window);
+        int selected_level = menu.handle_menu(window);
         if(selected_level)
             return selected_level;
     }
