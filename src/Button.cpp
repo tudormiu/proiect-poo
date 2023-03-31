@@ -51,7 +51,7 @@ void Button::display_button(sf::RenderWindow &window, bool hover) {
 
     texture.loadFromFile(this -> texture_default);
     sprite.setPosition(position);
-    font.loadFromFile("minecraft.ttf");
+    font.loadFromFile("Minecraft.ttf");
 
     display_text.setString(text);
     if (this -> type == 1 or this -> type == 2)
