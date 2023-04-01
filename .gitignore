@@ -708,8 +708,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Test data
-game_data.txt
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
