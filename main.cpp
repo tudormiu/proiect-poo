@@ -22,6 +22,10 @@ int main(){
     levels.emplace_back(std::string("levels/level4.txt"));
     levels.emplace_back(std::string("levels/level5.txt"));
     levels.emplace_back(std::string("levels/level6.txt"));
+    levels.emplace_back(std::string("levels/level7.txt"));
+    levels.emplace_back(std::string("levels/level8.txt"));
+    levels.emplace_back(std::string("levels/level9.txt"));
+    levels.emplace_back(std::string("levels/level10.txt"));
 
     std::vector<Button> level_buttons;
     for (int i = 0; i < 10; i++){
