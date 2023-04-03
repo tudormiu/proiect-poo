@@ -51,4 +51,3 @@ void Position::display_at_position(sf::RenderWindow &window, const std::string& 
     sprite.setScale(scale_x * scale, scale_y * scale);
     window.draw(sprite);
 }
-

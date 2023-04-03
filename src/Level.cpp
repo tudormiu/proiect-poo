@@ -208,7 +208,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         reset_level(*this);
 
     if (status == 2)
-        return 2;
+        return -1;
 
     window.display();
 
