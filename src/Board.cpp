@@ -119,12 +119,18 @@ void Board::display_empty_board(sf::RenderWindow &window) const {
     temp_dm.display_at_position(window, "img/DM.png", offset_x, offset_y, float(0.76), 1, float(this -> columns-1));
 }
 
-void Board::display_board(sf::RenderWindow &window) const {
-
-    //float offset_x = calculate_offset_x(window);
-    //float offset_y = calculate_offset_y(window);
+int Board::display_board(sf::RenderWindow &window) const {
 
     display_empty_board(window);
+
+    Button back_button{0, 0, "", 4};
+    if(back_button.handle_button(window))
+        return 2;
+
+    Button reset_button{100, 0, "", 6};
+    if(reset_button.handle_button(window))
+        return 1;
+
     for (const Wall& wall: walls)
         wall.display_wall(window, offset_x, offset_y);
     for (const Landing_pad& landing_pad: landing_pads)
@@ -132,6 +138,8 @@ void Board::display_board(sf::RenderWindow &window) const {
     for (const Box& box: boxes)
         box.display_box(window, offset_x, offset_y);
     player.display_player(window, offset_x, offset_y);
+
+    return 0;
 }
 
 bool Board::check_win() const {

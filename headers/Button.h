@@ -26,9 +26,10 @@ class Menu{
     sf::Sprite background;
     sf::Texture background_texture;
     std::vector<Button> buttons;
+    bool back_button, forward_button;
 
 public:
-    explicit Menu(std::vector<Button> buttons_, const std::string& background_path = "img/title.jpg");
+    explicit Menu(std::vector<Button> buttons_, const std::string& background_path = "img/title.jpg", bool back_button = false, bool forward_button = false);
     int handle_menu(sf::RenderWindow &window);
     static int display_menu(sf::RenderWindow &window, Menu menu);
     void activate_buttons(int index);

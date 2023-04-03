@@ -33,7 +33,7 @@ int main(){
                                    false);
     }
 
-    Menu level_menu(level_buttons, "img/background_levels.jpg");
+    Menu level_menu(level_buttons, "img/background_levels.jpg", true, true);
 
 
     bool updated = false;
@@ -61,7 +61,17 @@ int main(){
             if(selected_level == false)
                 selected_level = Menu::display_menu(window, level_menu);
 
-            if(selected_level)
+            if(selected_level == -1){
+                pressed = 0;
+                selected_level = 0;
+                updated = false;
+            }
+
+            if(selected_level == -2){
+                selected_level = 0;
+            }
+
+            if(selected_level > 0)
             {
                 int status = Level ::display_level(window, levels[selected_level - 1]);
                 if(status)
@@ -83,6 +93,7 @@ int main(){
             fout << "0";
             fout.close();
             pressed = 0;
+            updated = false;
         }
 
         window.display();

@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Box.h"
 #include "Landing_pad.h"
+#include "Button.h"
 
 class Board {
     int lines, columns;
@@ -23,7 +24,7 @@ public:
     void move_player(char input_);
     bool box_collisions(char input_);
     void display_empty_board(sf::RenderWindow &window) const;
-    void display_board(sf::RenderWindow &window) const;
+    int display_board(sf::RenderWindow &window) const;
     [[nodiscard]] bool check_win() const;
 
     [[nodiscard]] float calculate_offset_x(float scale = 0.76) const;

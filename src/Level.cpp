@@ -199,8 +199,17 @@ int Level::handle_input(sf::RenderWindow &window) {
     }
 
     window.clear();
+
     display_background(window);
-    this -> board.display_board(window);
+
+    int status = this -> board.display_board(window);
+
+    if  (status == 1)
+        reset_level(*this);
+
+    if (status == 2)
+        return 2;
+
     window.display();
 
     if(this -> board.check_win())
@@ -231,7 +240,6 @@ int Level::display_level(sf::RenderWindow &window, Level level) {
     }
     return 0;
 }
-
 
 void Level::reset_level(Level &level) {
     Level temp_level(level.level_file_path);

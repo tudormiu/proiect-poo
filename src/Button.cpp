@@ -37,6 +37,21 @@ Button::Button(float x_axis, float y_axis, std::string text, int type, bool acti
             this -> texture_hover = std::string ("img/buttons/square_button_disabled.png");
         }
     }
+
+    if (type == 4){
+        this -> texture_default = std::string ("img/buttons/back_button.png");
+        this -> texture_hover = std::string ("img/buttons/back_button_hover.png");
+    }
+
+    if (type == 5){
+        this -> texture_default = std::string ("img/buttons/forward_button.png");
+        this -> texture_hover = std::string ("img/buttons/forward_button_hover.png");
+    }
+
+    if (type == 6){
+        this -> texture_default = std::string ("img/buttons/reset_button.png");
+        this -> texture_hover = std::string ("img/buttons/reset_button_hover.png");
+    }
 }
 
 void Button::display_button(sf::RenderWindow &window, bool hover) {
@@ -103,21 +118,42 @@ int Button::handle_button(sf::RenderWindow &window) {
 
 void Button::set_active(Button &button, bool active_) {
     button.active = active_;
-    if (button.type == 1){
-        button.texture_default = std::string ("img/buttons/button_default.png");
-        button.texture_hover = std::string ("img/buttons/button_hover.png");
+    if(active_){
+        if (button.type == 1){
+            button.texture_default = std::string ("img/buttons/button_default.png");
+            button.texture_hover = std::string ("img/buttons/button_hover.png");
+        }
+
+        if (button.type == 2){
+            button.texture_default = std::string ("img/buttons/big_button_default.png");
+            button.texture_hover = std::string ("img/buttons/big_button_hover.png");
+
+        }
+
+        if (button.type == 3){
+            button.texture_default = std::string ("img/buttons/square_button_default.png");
+            button.texture_hover = std::string ("img/buttons/square_button_hover.png");
+        }
     }
 
-    if (button.type == 2){
-        button.texture_default = std::string ("img/buttons/big_button_default.png");
-        button.texture_hover = std::string ("img/buttons/big_button_hover.png");
+    else{
+        if (button.type == 1){
+            button.texture_default = std::string ("img/buttons/button_disabled.png");
+            button.texture_hover = std::string ("img/buttons/button_disabled.png");
+        }
 
+        if (button.type == 2){
+            button.texture_default = std::string ("img/buttons/big_button_disabled.png");
+            button.texture_hover = std::string ("img/buttons/big_button_disabled.png");
+
+        }
+
+        if (button.type == 3){
+            button.texture_default = std::string ("img/buttons/square_button_disabled.png");
+            button.texture_hover = std::string ("img/buttons/square_button_disabled.png");
+        }
     }
 
-    if (button.type == 3){
-        button.texture_default = std::string ("img/buttons/square_button_default.png");
-        button.texture_hover = std::string ("img/buttons/square_button_hover.png");
-    }
 }
 
 std::ostream &operator<<(std::ostream &os, const Button &st) {
@@ -125,7 +161,8 @@ std::ostream &operator<<(std::ostream &os, const Button &st) {
     return os;
 }
 
-Menu::Menu(std::vector<Button> buttons, const std::string& background_path) : buttons(std::move(buttons)) {
+Menu::Menu(std::vector<Button> buttons, const std::string& background_path, bool back_button, bool forward_button) :
+    buttons(std::move(buttons)), back_button(back_button), forward_button(forward_button) {
     this -> background_texture.loadFromFile(background_path);
     this -> background.setTexture(background_texture);
 
@@ -139,6 +176,19 @@ int Menu::handle_menu(sf::RenderWindow &window) {
     for (int i = 0; i < int(this -> buttons.size()); i++)
         if(this -> buttons[i].handle_button(window) == 1)
             return i + 1;
+    if(this -> back_button)
+    {
+        Button back_button_(120, 492, "", 4);
+        if(back_button_.handle_button(window) == 1)
+            return -1;
+    }
+    if(this -> forward_button)
+    {
+        Button forward_button_(1256, 492, "", 5);
+        if(forward_button_.handle_button(window) == 1)
+            return -2;
+    }
+
     window.display();
     return 0;
 }
@@ -161,6 +211,8 @@ int Menu::display_menu(sf::RenderWindow &window, Menu menu) {
 void Menu::activate_buttons(int index) {
     for (int i = 0; i <= index; i++)
         Button::set_active(buttons[i], true);
+    for (int i = index + 1; i < int(buttons.size()); i++)
+        Button::set_active(buttons[i], false);
 }
 
 
