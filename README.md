@@ -24,32 +24,37 @@ boxes are placed at storage locations.
 
 ### Movement
 
-You can move the player using the 'w', 'a', 's', 'd' keys.
-The player can move only one square at a time.
+You can move the player using the arrow keys on your keyboard.
 
-In this stage of the project, inputs can be given using the 
-keyboard, but you have to press enter after every input.
+In order to restart the level you are playing, press the `R` key.
+
+In order to quit the level you are playing, press the `ESC` key.
+
+The player can move in two ways:
+- One square at a time, by short pressing the arrow key.
+- Dashing (moving multiple squares at once), by long pressing the arrow key.
+
+You can also restart the level or quit it by clicking the buttons
+in the top left corner of the screen.
 
 ### Current state of the project:
 
-The player can move around the board. Collisions with walls and
-the edges of the board are handled.
+The base game is currently done, been tested and works as intended.
+Only three levels are available, but more will be added in the future.
 
-Boxes are implemented, so you can move them around the board.
-Collisions with walls and the edges of the board are handled.
-There are no storage locations in this version, so the game can 
-not be won.
+Menus are implemented, with only one element in this section 
+not working in this version (the right arrow button in the level 
+selection menu, as it will go to more levels that are 
+not done yet).
 
-There are no grpaics yet. In order to test the
-movement of the player, the board is printed to the console.
+The progress is saved in a file, so you can quit the game and
+continue later. There is also an option to reset the progress
+in the main menu.
 
-In order to better understand the movement of the player, in case
-of a collision, the player is not moved and, along with the board,
-a message is printed to the console.
+Every button has a hover effect.
 
-After the game is stopped, a window will open. It doesn't have
-any functionality yet, but it will be used to display the
-current state of the game.
+The player turns in the direction he is moving for a more immersive
+experience.
 
 ---
 
@@ -66,8 +71,6 @@ current state of the game.
 - [x] definirea a minim 3-4 clase folosind compunere
 - [x] constructori de inițializare
 - [x] pentru o clasă: constructor de copiere, `operator=` de copiere, destructor
-<!-- - [ ] pentru o altă clasă: constructor de mutare, `operator=` de mutare, destructor -->
-<!-- - [ ] pentru o altă clasă: toate cele 5 funcții membru speciale -->
 - [x] `operator<<` pentru toate clasele pentru afișare (std::ostream)
 - [x] cât mai multe `const` (unde este cazul)
 - [x] implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese
@@ -114,4 +117,4 @@ current state of the game.
 - [README.md game description](https://en.wikipedia.org/wiki/Sokoban)
 - [Font](https://www.dafont.com/minecraft.font)
 - [Levels](http://www.game-sokoban.com/)
-- [Lecels](https://sokoban.info/)
+- [Levels](https://sokoban.info/)
