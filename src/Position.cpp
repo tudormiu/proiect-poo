@@ -51,3 +51,10 @@ void Position::display_at_position(sf::RenderWindow &window, const std::string& 
     sprite.setScale(scale_x * scale, scale_y * scale);
     window.draw(sprite);
 }
+
+void Position::display_at_position(sf::RenderWindow &window, sf::Sprite& sprite, float offset_x,
+                                   float offset_y, float scale, float scale_x, float scale_y) const {
+    sprite.setPosition(((float(this -> x_axis) * 64) * scale) + offset_x,((float(this -> y_axis) * 64) * scale) + offset_y);
+    sprite.setScale(scale_x * scale, scale_y * scale);
+    window.draw(sprite);
+}

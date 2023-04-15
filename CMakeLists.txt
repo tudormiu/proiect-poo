@@ -93,7 +93,7 @@ endif()
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp src/Board.cpp src/Player.cpp src/Position.cpp src/Wall.cpp src/Box.cpp src/Landing_pad.cpp src/Level.cpp src/Button.cpp)
+add_executable(${PROJECT_NAME} main.cpp src/Board.cpp src/Player.cpp src/Position.cpp src/Wall.cpp src/Box.cpp src/Landing_pad.cpp src/Level.cpp src/Button.cpp src/Static_entity.cpp src/Movable_entity.cpp)
 ###############################################################################
 
 # target definitions

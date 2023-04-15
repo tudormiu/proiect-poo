@@ -19,10 +19,9 @@ class Level {
     int level_number;
     int lines, columns;
 
-
     std::string level_file_path;
 
-    public:
+public:
 
     explicit Level(const std::string& level_file_path);
     int handle_input(sf::RenderWindow &window);

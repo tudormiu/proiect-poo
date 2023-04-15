@@ -17,6 +17,8 @@ public:
     friend std::ostream &operator<<(std::ostream& os, const Position& st);
     void display_at_position(sf::RenderWindow &window, const std::string& texture_path, float offset_x = 0,
                              float offset_y = 0, float scale = 0.76, float scale_x = 1, float scale_y = 1) const;
+    void display_at_position(sf::RenderWindow &window, sf::Sprite& sprite, float offset_x = 0, float offset_y = 0,
+                             float scale = 0.76, float scale_x = 1, float scale_y = 1) const;
 };
 
 #endif //OOP_POSITION_H

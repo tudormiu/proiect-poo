@@ -29,9 +29,6 @@ public:
 
     [[nodiscard]] float calculate_offset_x(float scale = 0.76) const;
     [[nodiscard]] float calculate_offset_y(float scale = 0.76) const;
-
-    //float calculate_offset_x(sf::RenderWindow &window, float scale = 0.76) const;
-    //float calculate_offset_y(sf::RenderWindow &window, float scale = 0.76) const;
 };
 
 
