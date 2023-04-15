@@ -16,6 +16,7 @@ int main(){
     Menu main_menu(buttons_menu);
 
     std::vector<Level> levels;
+    levels.reserve(1000);
     levels.emplace_back(std::string("levels/level1.txt"));
     levels.emplace_back(std::string("levels/level2.txt"));
     levels.emplace_back(std::string("levels/level3.txt"));
@@ -28,6 +29,7 @@ int main(){
     levels.emplace_back(std::string("levels/level10.txt"));
 
     std::vector<Button> level_buttons;
+    level_buttons.reserve(1000);
     for (int i = 0; i < 10; i++){
         level_buttons.emplace_back(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)),  std::to_string(i + 1), 3,
                                    false);

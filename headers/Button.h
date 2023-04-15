@@ -5,17 +5,18 @@
 
 
 class Button {
-    float x_axis, y_axis;
-    std::string text;
+    float x_axis, y_axis, x_limit, y_limit;
 
     int type;
     bool active;
 
-    std::string texture_default;
-    std::string texture_hover;
+    sf::Texture texture_default, texture_hover, texture_disabled;
+    sf::Sprite button_default, button_hover, button_disabled;
+    sf::Font font;
+    sf::Text text;
 
 public:
-    explicit Button(float x_axis, float y_axis, std::string text, int type = 1, bool active = true);
+    explicit Button(float x_axis, float y_axis, const std::string& text, int type = 1, bool active = true);
     void display_button(sf::RenderWindow &window, bool hover = false);
     int handle_button(sf::RenderWindow &window);
     static void set_active(Button &buton, bool active_);
