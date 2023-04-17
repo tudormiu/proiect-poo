@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "headers/Level.h"
 #include "headers/Button.h"
+#include "headers/Menu.h"
 
 int main(){
     sf::RenderWindow window(sf::VideoMode(1440, 810), "My window", sf::Style::Titlebar | sf::Style::Close);
@@ -35,7 +36,7 @@ int main(){
                                    false);
     }
 
-    Menu level_menu(level_buttons, "img/background_levels.jpg", true, true);
+    Level_menu level_menu(level_buttons, "img/background_levels.jpg", true, false);
 
 
     bool updated = false;
@@ -49,7 +50,7 @@ int main(){
                 window.close();
         }
         if(!pressed)
-            pressed = Menu::display_menu(window, main_menu);
+            pressed = main_menu.display_menu(window);
 
         if (pressed == 1) {
             int unlocked_levels = 0;
@@ -61,7 +62,7 @@ int main(){
             }
 
             if(selected_level == false)
-                selected_level = Menu::display_menu(window, level_menu);
+                selected_level = level_menu.display_menu(window);
 
             if(selected_level == -1){
                 pressed = 0;
