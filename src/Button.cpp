@@ -88,10 +88,16 @@ void Button::set_active(Button &button, bool active_) {
     button.active = active_;
 }
 
+void Button::set_active(Button *button, bool active_) {
+    button -> active = active_;
+
+}
+
 std::ostream &operator<<(std::ostream &os, const Button &st) {
     os << "x_axis: " << st.x_axis << " y_axis: " << st.y_axis << " active: " << st.active;
     return os;
 }
+
 
 Standard_button::Standard_button(float x_axis, float y_axis, const std::string &text, bool active):
         Button(x_axis, y_axis, text, "Minecraft.ttf", "img/buttons/button_default.png",

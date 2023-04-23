@@ -26,6 +26,7 @@ public:
     void display_button(sf::RenderWindow &window, bool hover = false);
     int handle_button(sf::RenderWindow &window);
     static void set_active(Button &buton, bool active_);
+    static void set_active(Button *buton, bool active_);
     friend std::ostream &operator<<(std::ostream &os, const Button &st);
 };
 

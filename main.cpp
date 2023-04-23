@@ -11,7 +11,8 @@ int main(){
         Big_button button1(464, 460, std::string("PLAY!"));
         Big_button button2(464, 560, std::string("ERASE DATA"));
 
-
+    Forwad_button fb(1256, 492);
+    Back_button bb(120, 492);
 
     std::vector<Button> buttons_menu;
     buttons_menu.emplace_back(button1);
@@ -69,7 +70,7 @@ int main(){
     level_buttons.emplace_back(level9);
     level_buttons.emplace_back(level10);
 
-    Level_menu level_menu(level_buttons, "img/background_levels.jpg", true, false);
+    Level_menu level_menu(level_buttons, "img/background_levels.jpg", true, false, &bb, &fb);
 
 
     bool updated = false;

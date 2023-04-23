@@ -32,31 +32,19 @@ int Menu::add_buttons(sf::RenderWindow &window) {
     return 0;
 }
 
-int Menu::add_back_button(sf::RenderWindow &window, bool active) {
-
-    if(active){
-        Back_button back_button_(120, 492, true);
-        if(back_button_.handle_button(window) == 1)
-            return 1;
-        return 0;
-    }
-    Back_button back_button_(120, 492, false);
-    if(back_button_.handle_button(window) == 1)
+int Menu::add_back_button(sf::RenderWindow &window, Button *button, bool active) {
+    Button::set_active(button,active);
+    if(button -> handle_button(window) == 1)
         return 1;
     return 0;
 }
 
-int Menu::add_forward_button(sf::RenderWindow &window, bool active) {
-    if(active){
-        Forwad_button forward_button_(1256, 492, true);
-        if(forward_button_.handle_button(window) == 1)
-            return 1;
-        return 0;
-    }
-    Forwad_button forward_button_(1256, 492, false);
-    if(forward_button_.handle_button(window) == 1)
+int Menu::add_forward_button(sf::RenderWindow &window, Button *button, bool active) {
+    Button::set_active(button,active);
+    if(button -> handle_button(window) == 1)
         return 1;
     return 0;
+
 }
 
 int Menu::display_menu(sf::RenderWindow &window) {
@@ -80,8 +68,11 @@ void Menu::activate_buttons(int index) {
         Button::set_active(buttons[i], false);
 }
 
-Level_menu::Level_menu(std::vector<Button> buttons, const std::string& background_path, bool back_button, bool forward_button) :
-        Menu(std::move(buttons), background_path), back_button(back_button), forward_button(forward_button) {}
+Level_menu::Level_menu(std::vector<Button> buttons, const std::string& background_path, bool back_button_status,
+                       bool forward_button_status, Button *back_button, Button *forward_button) :
+        Menu(std::move(buttons), background_path), back_button_status(back_button_status),
+        forward_button_status(forward_button_status), back_button(back_button), forward_button(forward_button) {
+}
 
 int Level_menu::handle_menu(sf::RenderWindow &window) {
     window.clear();
@@ -90,10 +81,10 @@ int Level_menu::handle_menu(sf::RenderWindow &window) {
     if(button_pressed != 0)
         return button_pressed;
 
-    if(add_back_button(window, back_button) == 1)
+    if(add_back_button(window, back_button, back_button_status) == 1)
             return -1;
 
-    if(add_forward_button(window, forward_button) == 1)
+    if(add_forward_button(window, forward_button, forward_button_status) == 1)
             return -2;
 
     window.display();
