@@ -7,8 +7,11 @@
 int main(){
     sf::RenderWindow window(sf::VideoMode(1440, 810), "My window", sf::Style::Titlebar | sf::Style::Close);
 
-    Button button1(464, 460, std::string("PLAY!"),2);
-    Button button2(464, 560, std::string("ERASE DATA"),2);
+    try{
+        Big_button button1(464, 460, std::string("PLAY!"));
+        Big_button button2(464, 560, std::string("ERASE DATA"));
+
+
 
     std::vector<Button> buttons_menu;
     buttons_menu.emplace_back(button1);
@@ -31,10 +34,40 @@ int main(){
 
     std::vector<Button> level_buttons;
     level_buttons.reserve(1000);
-    for (int i = 0; i < 10; i++){
-        level_buttons.emplace_back(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)),  std::to_string(i + 1), 3,
-                                   false);
-    }
+    //for (int i = 0; i < 10; i++){
+    //    level_buttons.emplace_back(Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)),   std::to_string(i + 1)));
+    //}
+    int i = 0;
+    Square_button level1(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "1");
+    i++;
+    Square_button level2(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "2");
+    i++;
+    Square_button level3(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "3");
+    i++;
+    Square_button level4(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "4");
+    i++;
+    Square_button level5(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "5");
+    i++;
+    Square_button level6(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "6");
+    i++;
+    Square_button level7(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "7");
+    i++;
+    Square_button level8(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "8");
+    i++;
+    Square_button level9(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "9");
+    i++;
+    Square_button level10(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "10");
+
+    level_buttons.emplace_back(level1);
+    level_buttons.emplace_back(level2);
+    level_buttons.emplace_back(level3);
+    level_buttons.emplace_back(level4);
+    level_buttons.emplace_back(level5);
+    level_buttons.emplace_back(level6);
+    level_buttons.emplace_back(level7);
+    level_buttons.emplace_back(level8);
+    level_buttons.emplace_back(level9);
+    level_buttons.emplace_back(level10);
 
     Level_menu level_menu(level_buttons, "img/background_levels.jpg", true, false);
 
@@ -100,6 +133,10 @@ int main(){
         }
 
         window.display();
+    }
+    }
+    catch (eroare_aplicatie &e) {
+        std::cout << e.what() << std::endl;
     }
     return 0;
 }

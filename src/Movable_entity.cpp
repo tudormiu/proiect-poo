@@ -3,14 +3,12 @@
 Movable_entity::Movable_entity(const Position &position, const std::string&  texture_path_default, const std::string&  texture_path_active, bool status) :
         position(position), status(status) {
     if (!texture_default.loadFromFile(texture_path_default))
-    {
-        std::cout << "Error loading texture\n";
-    }
+        throw eroare_imagine(texture_path_default);
     sprite_default.setTexture(texture_default);
 
     if (!texture_active.loadFromFile(texture_path_active))
     {
-        std::cout << "Error loading texture\n";
+        throw eroare_imagine(texture_path_active);
     }
     sprite_active.setTexture(texture_active);
 }

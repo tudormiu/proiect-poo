@@ -3,7 +3,8 @@
 
 Menu::Menu(std::vector<Button> buttons, const std::string& background_path) :
         buttons(std::move(buttons)) {
-    this -> background_texture.loadFromFile(background_path);
+    if(!this -> background_texture.loadFromFile(background_path))
+        throw eroare_imagine(background_path);
     this -> background.setTexture(background_texture);
 
     this -> background.setTexture(this -> background_texture);
@@ -24,7 +25,6 @@ void Menu::add_background(Menu *this_, sf::RenderWindow &window){
     window.draw(this_ -> background);
 }
 
-
 int Menu::add_buttons(sf::RenderWindow &window) {
     for (int i = 0; i < int(this -> buttons.size()); i++)
         if(this -> buttons[i].handle_button(window) == 1)
@@ -35,12 +35,12 @@ int Menu::add_buttons(sf::RenderWindow &window) {
 int Menu::add_back_button(sf::RenderWindow &window, bool active) {
 
     if(active){
-        Button back_button_(120, 492, "", 4, true);
+        Back_button back_button_(120, 492, true);
         if(back_button_.handle_button(window) == 1)
             return 1;
         return 0;
     }
-    Button back_button_(120, 492, "", 4, false);
+    Back_button back_button_(120, 492, false);
     if(back_button_.handle_button(window) == 1)
         return 1;
     return 0;
@@ -48,12 +48,12 @@ int Menu::add_back_button(sf::RenderWindow &window, bool active) {
 
 int Menu::add_forward_button(sf::RenderWindow &window, bool active) {
     if(active){
-        Button forward_button_(1256, 492, "", 5, true);
+        Forwad_button forward_button_(1256, 492, true);
         if(forward_button_.handle_button(window) == 1)
             return 1;
         return 0;
     }
-    Button forward_button_(1256, 492, "", 5, false);
+    Forwad_button forward_button_(1256, 492, false);
     if(forward_button_.handle_button(window) == 1)
         return 1;
     return 0;

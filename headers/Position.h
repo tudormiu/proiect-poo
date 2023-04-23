@@ -2,6 +2,7 @@
 #define OOP_POSITION_H
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Exceptions.h"
 
 class Position{
     int x_axis, y_axis;

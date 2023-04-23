@@ -8,6 +8,7 @@
 #include "Box.h"
 #include "Landing_pad.h"
 #include "Button.h"
+#include "Exceptions.h"
 
 class Board {
     int lines, columns;
