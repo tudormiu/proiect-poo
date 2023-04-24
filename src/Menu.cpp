@@ -25,26 +25,18 @@ void Menu::add_background(Menu *this_, sf::RenderWindow &window){
     window.draw(this_ -> background);
 }
 
+int Menu::add_extra_button(sf::RenderWindow &window, Button *button, bool active) {
+    Button::set_active(button,active);
+    if(button -> handle_button(window) == 1)
+        return 1;
+    return 0;
+}
+
 int Menu::add_buttons(sf::RenderWindow &window) {
     for (int i = 0; i < int(this -> buttons.size()); i++)
         if(this -> buttons[i].handle_button(window) == 1)
             return i + 1;
     return 0;
-}
-
-int Menu::add_back_button(sf::RenderWindow &window, Button *button, bool active) {
-    Button::set_active(button,active);
-    if(button -> handle_button(window) == 1)
-        return 1;
-    return 0;
-}
-
-int Menu::add_forward_button(sf::RenderWindow &window, Button *button, bool active) {
-    Button::set_active(button,active);
-    if(button -> handle_button(window) == 1)
-        return 1;
-    return 0;
-
 }
 
 int Menu::display_menu(sf::RenderWindow &window) {
@@ -81,10 +73,10 @@ int Level_menu::handle_menu(sf::RenderWindow &window) {
     if(button_pressed != 0)
         return button_pressed;
 
-    if(add_back_button(window, back_button, back_button_status) == 1)
+    if(add_extra_button(window, back_button, back_button_status) == 1)
             return -1;
 
-    if(add_forward_button(window, forward_button, forward_button_status) == 1)
+    if(add_extra_button(window, forward_button, forward_button_status) == 1)
             return -2;
 
     window.display();

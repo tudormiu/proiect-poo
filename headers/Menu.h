@@ -14,9 +14,8 @@ public:
     virtual int handle_menu(sf::RenderWindow &window);
 
     static void add_background(Menu *this_, sf::RenderWindow &window);
+    static int add_extra_button(sf::RenderWindow &window, Button *, bool active);
     int add_buttons(sf::RenderWindow &window);
-    static int add_back_button(sf::RenderWindow &window, Button *button, bool active);
-    static int add_forward_button(sf::RenderWindow &window, Button *, bool active);
     int display_menu(sf::RenderWindow &window);
     void activate_buttons(int index);
 };
