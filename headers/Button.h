@@ -5,14 +5,16 @@
 
 
 class Button {
-    float x_axis, y_axis, x_limit, y_limit;
-
-    bool active;
+    float x_limit, y_limit;
 
     sf::Texture texture_default, texture_hover, texture_disabled;
     sf::Sprite button_default, button_hover, button_disabled;
     sf::Font font;
     sf::Text text;
+
+protected:
+    float x_axis, y_axis;
+    bool active;
 
 public:
 
@@ -24,46 +26,45 @@ public:
                         float vertical_offset = 4.5);
     void center_text(float vertical_offset = 0);
     void display_button(sf::RenderWindow &window, bool hover = false);
-    int handle_button(sf::RenderWindow &window);
+    virtual int handle_button(sf::RenderWindow &window);
     static void set_active(Button &buton, bool active_);
     static void set_active(Button *buton, bool active_);
     friend std::ostream &operator<<(std::ostream &os, const Button &st);
 };
 
-class Standard_button : public Button {
-public:
-    explicit Standard_button(float x_axis, float y_axis, const std::string& text, bool active = true);
-};
-
-
 class Big_button : public Button {
 
 public:
     explicit Big_button(float x_axis, float y_axis, const std::string& text, bool active = true);
+    int handle_button(sf::RenderWindow &window) override;
 };
 
 
 class Square_button : public Button {
 public:
     explicit Square_button(float x_axis, float y_axis, const std::string& text, bool active = true);
+    int handle_button(sf::RenderWindow &window) override;
 };
 
 
 class Back_button : public Button {
 public:
     explicit Back_button(float x_axis, float y_axis, bool active = true);
+    int handle_button(sf::RenderWindow &window) override;
 };
 
 
-class Forwad_button : public Button {
+class Forward_button : public Button {
 public:
-    explicit Forwad_button(float x_axis, float y_axis, bool active = true);
+    explicit Forward_button(float x_axis, float y_axis, bool active = true);
+    int handle_button(sf::RenderWindow &window) override;
 };
 
 
 class Reset_button : public Button {
 public:
     explicit Reset_button(float x_axis, float y_axis, bool active = true);
+    int handle_button(sf::RenderWindow &window) override;
 };
 
 #endif //OOP_BUTTON_H

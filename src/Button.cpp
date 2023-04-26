@@ -98,33 +98,117 @@ std::ostream &operator<<(std::ostream &os, const Button &st) {
     return os;
 }
 
-
-Standard_button::Standard_button(float x_axis, float y_axis, const std::string &text, bool active):
-        Button(x_axis, y_axis, text, "Minecraft.ttf", "img/buttons/button_default.png",
-               "img/buttons/button_hover.png","img/buttons/button_disabled.png",
-               46, active) {}
-
 Big_button::Big_button(float x_axis, float y_axis, const std::string &text, bool active):
         Button(x_axis, y_axis, text, "Minecraft.ttf", "img/buttons/big_button_default.png",
                "img/buttons/big_button_hover.png","img/buttons/big_button_disabled.png",
                46, active) {}
+
+int Big_button::handle_button(sf::RenderWindow &window) {
+    sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+    bool hover = false;
+    if(active){
+        if (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 512 and
+            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 64) {
+            hover = true;
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
+                return 1;
+            }
+        }
+    }
+    display_button(window, hover);
+
+    return 0;
+}
 
 Square_button::Square_button(float x_axis, float y_axis, const std::string &text, bool active):
         Button(x_axis, y_axis, text, "Minecraft.ttf", "img/buttons/square_button_default.png",
                "img/buttons/square_button_hover.png","img/buttons/square_button_disabled.png",
                80, active, 15) {}
 
+int Square_button::handle_button(sf::RenderWindow &window) {
+    sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+    bool hover = false;
+    if(active){
+        if (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 128 and
+            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 128) {
+            hover = true;
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
+                return 1;
+            }
+        }
+    }
+    display_button(window, hover);
+
+    return 0;
+}
+
 Back_button::Back_button(float x_axis, float y_axis, bool active):
         Button(x_axis, y_axis, "", "Minecraft.ttf", "img/buttons/back_button_default.png",
                "img/buttons/back_button_hover.png","img/buttons/small_square_button_disabled.png",
                46, active) {}
 
-Forwad_button::Forwad_button(float x_axis, float y_axis, bool active):
+int Back_button::handle_button(sf::RenderWindow &window) {
+    sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+    bool hover = false;
+    if(active){
+        if (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 64 and
+            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 64) {
+            hover = true;
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
+                return 1;
+            }
+        }
+    }
+    display_button(window, hover);
+
+    return 0;
+}
+
+Forward_button::Forward_button(float x_axis, float y_axis, bool active):
         Button(x_axis, y_axis, "", "Minecraft.ttf", "img/buttons/forward_button_default.png",
                "img/buttons/forward_button_hover.png","img/buttons/small_square_button_disabled.png",
                46, active) {}
+
+int Forward_button::handle_button(sf::RenderWindow &window) {
+    sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+    bool hover = false;
+    if(active){
+        if (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 64 and
+            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 64) {
+            hover = true;
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
+                return 1;
+            }
+        }
+    }
+    display_button(window, hover);
+
+    return 0;
+}
 
 Reset_button::Reset_button(float x_axis, float y_axis, bool active):
         Button(x_axis, y_axis, "", "Minecraft.ttf", "img/buttons/reset_button_default.png",
                "img/buttons/reset_button_hover.png","img/buttons/small_square_button_disabled.png",
                46, active) {}
+
+int Reset_button::handle_button(sf::RenderWindow &window) {
+    sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+    bool hover = false;
+    if(active){
+        if (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 64 and
+            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 64) {
+            hover = true;
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
+                return 1;
+            }
+        }
+    }
+    display_button(window, hover);
+
+    return 0;
+}

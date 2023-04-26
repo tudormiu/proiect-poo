@@ -11,7 +11,7 @@ int main(){
         Big_button button1(464, 460, std::string("PLAY!"));
         Big_button button2(464, 560, std::string("ERASE DATA"));
 
-    Forwad_button fb(1256, 492);
+    Forward_button fb(1256, 492);
     Back_button bb(120, 492);
 
     std::vector<Button> buttons_menu;
