@@ -5,8 +5,6 @@
 
 
 class Button {
-    float x_limit, y_limit;
-
     sf::Texture texture_default, texture_hover, texture_disabled;
     sf::Sprite button_default, button_hover, button_disabled;
     sf::Font font;
@@ -21,13 +19,15 @@ public:
     Button(float x_axis, float y_axis, const std::string& text, const std::string& font_path,
                     const std::string& texture_path_default, const std::string& texture_path_hover,
                     const std::string& texture_path_disabled, int char_size,  bool active = true, float vertical_offset = 4.5);
+
+    virtual ~Button() = 0;
+
     void set_up(const std::string& text_, const std::string& font_path, const std::string& texture_path_default,
                         const std::string& texture_path_hover, const std::string& texture_path_disabled, int char_size,
                         float vertical_offset = 4.5);
     void center_text(float vertical_offset = 0);
     void display_button(sf::RenderWindow &window, bool hover = false);
-    virtual int handle_button(sf::RenderWindow &window);
-    static void set_active(Button &buton, bool active_);
+    virtual int handle_button(sf::RenderWindow &window) = 0;
     static void set_active(Button *buton, bool active_);
     friend std::ostream &operator<<(std::ostream &os, const Button &st);
 };

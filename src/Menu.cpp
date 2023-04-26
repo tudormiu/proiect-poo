@@ -1,7 +1,7 @@
 #include "../headers/Menu.h"
 
 
-Menu::Menu(std::vector<Button> buttons, const std::string& background_path) :
+Menu::Menu(std::vector<Button*> buttons, const std::string& background_path) :
         buttons(std::move(buttons)) {
     if(!this -> background_texture.loadFromFile(background_path))
         throw eroare_imagine(background_path);
@@ -34,7 +34,7 @@ int Menu::add_extra_button(sf::RenderWindow &window, Button *button, bool active
 
 int Menu::add_buttons(sf::RenderWindow &window) {
     for (int i = 0; i < int(this -> buttons.size()); i++)
-        if(this -> buttons[i].handle_button(window) == 1)
+        if(this -> buttons[i] -> handle_button(window) == 1)
             return i + 1;
     return 0;
 }
@@ -54,13 +54,13 @@ int Menu::display_menu(sf::RenderWindow &window) {
 }
 
 void Menu::activate_buttons(int index) {
-    for (int i = 0; i <= index; i++)
+    for (int i = 0; i < index; i++)
         Button::set_active(buttons[i], true);
     for (int i = index + 1; i < int(buttons.size()); i++)
         Button::set_active(buttons[i], false);
 }
 
-Level_menu::Level_menu(std::vector<Button> buttons, const std::string& background_path, bool back_button_status,
+Level_menu::Level_menu(std::vector<Button *> buttons, const std::string& background_path, bool back_button_status,
                        bool forward_button_status, Button *back_button, Button *forward_button) :
         Menu(std::move(buttons), background_path), back_button_status(back_button_status),
         forward_button_status(forward_button_status), back_button(back_button), forward_button(forward_button) {

@@ -7,10 +7,6 @@ Button::Button(float x_axis, float y_axis, const std::string &text, const std::s
 
     set_up(text, font_path, texture_path_default, texture_path_hover, texture_path_disabled, char_size, vertical_offset);
 
-    this -> x_limit = x_axis + float(texture_default.getSize().x);
-    this -> y_limit = y_axis + float(texture_default.getSize().y);
-
-
 }
 
 void Button::set_up(const std::string& text_, const std::string& font_path, const std::string& button_path_default,
@@ -65,38 +61,16 @@ void Button::display_button(sf::RenderWindow &window, bool hover) {
         window.draw(button_disabled);
 }
 
-
-int Button::handle_button(sf::RenderWindow &window) {
-    sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
-    bool hover = false;
-    if(active){
-        if (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < this -> x_limit and
-            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < this -> y_limit) {
-            hover = true;
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
-                return 1;
-            }
-        }
-    }
-    display_button(window, hover);
-
-    return 0;
-}
-
-void Button::set_active(Button &button, bool active_) {
-    button.active = active_;
-}
-
 void Button::set_active(Button *button, bool active_) {
     button -> active = active_;
-
 }
 
 std::ostream &operator<<(std::ostream &os, const Button &st) {
     os << "x_axis: " << st.x_axis << " y_axis: " << st.y_axis << " active: " << st.active;
     return os;
 }
+
+Button::~Button() = default;
 
 Big_button::Big_button(float x_axis, float y_axis, const std::string &text, bool active):
         Button(x_axis, y_axis, text, "Minecraft.ttf", "img/buttons/big_button_default.png",
