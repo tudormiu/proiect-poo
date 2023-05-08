@@ -26,7 +26,7 @@ void Menu::add_background(Menu *this_, sf::RenderWindow &window){
 }
 
 int Menu::add_extra_button(sf::RenderWindow &window, Button *button, bool active) {
-    Button::set_active(button,active);
+    button -> set_active(active);
     if(button -> handle_button(window) == 1)
         return 1;
     return 0;
@@ -54,10 +54,10 @@ int Menu::display_menu(sf::RenderWindow &window) {
 }
 
 void Menu::activate_buttons(int index) {
-    for (int i = 0; i < index; i++)
-        Button::set_active(buttons[i], true);
+    for (int i = 0; i <= index; i++)
+        buttons[i] -> set_active(true);
     for (int i = index + 1; i < int(buttons.size()); i++)
-        Button::set_active(buttons[i], false);
+        buttons[i] -> set_active( false);
 }
 
 Level_menu::Level_menu(std::vector<Button *> buttons, const std::string& background_path, bool back_button_status,

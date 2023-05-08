@@ -78,8 +78,8 @@ int Button::handle_button(sf::RenderWindow &window) {
     return 0;
 }
 
-void Button::set_active(Button *button, bool active_) {
-    button -> active = active_;
+void Button::set_active(bool active_) {
+    this -> active = active_;
 }
 
 std::ostream &operator<<(std::ostream &os, const Button &st) {

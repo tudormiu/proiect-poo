@@ -13,6 +13,9 @@ public:
     explicit Menu(std::vector<Button *> buttons_, const std::string& background_path = "img/title.jpg");
     virtual int handle_menu(sf::RenderWindow &window);
 
+    Menu(const Menu&) = delete;
+    Menu& operator=(const Menu&) = delete;
+
     static void add_background(Menu *this_, sf::RenderWindow &window);
     static int add_extra_button(sf::RenderWindow &window, Button *, bool active);
     int add_buttons(sf::RenderWindow &window);
@@ -28,6 +31,10 @@ public:
     explicit Level_menu(std::vector<Button *> buttons_, const std::string& background_path = "img/title.jpg",
                         bool back_button_status = true, bool forward_button_status = false,
                         Button *back_button = nullptr, Button *forward_button = nullptr);
+
+    Level_menu(const Level_menu&) = delete;
+    Level_menu& operator=(const Level_menu&) = delete;
+    
     int handle_menu(sf::RenderWindow &window) override;
 };
 

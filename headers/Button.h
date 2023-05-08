@@ -29,7 +29,7 @@ public:
     void display_button(sf::RenderWindow &window, bool hover = false);
     int handle_button(sf::RenderWindow &window);
     virtual bool check_parameters(sf::Vector2i mouse_position) = 0;
-    static void set_active(Button *buton, bool active_);
+    void set_active(bool active_);
     friend std::ostream &operator<<(std::ostream &os, const Button &st);
 };
 

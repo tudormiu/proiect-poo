@@ -39,12 +39,12 @@ in the top left corner of the screen.
 
 ### Current state of the project:
 
-The base game is currently done, been tested and works as intended.
-Only three levels are available, but more will be added in the future.
+The game is mostly done, been tested and works as intended.
+Only seven levels are available, but more will be added in the future.
 
 Menus are implemented, with only one element in this section 
-not working in this version (the right arrow button in the level 
-selection menu, as it will go to more levels that are 
+not avalabile, but working in this version (the right arrow button 
+in the level selection menu, as it will go to more levels that are 
 not done yet).
 
 The progress is saved in a file, so you can quit the game and

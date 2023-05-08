@@ -49,6 +49,12 @@ Level::Level(const std::string& level_file_path): level_file_path(level_file_pat
 
 int Level::handle_input(sf::RenderWindow &window) {
 
+    enum state {
+        back = -1,
+        playing = 0,
+        win = 1,
+        lose = 2};
+
     float main_delay = 0.2f;
     float temp_delay = 0.05f;
 
@@ -62,7 +68,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         window.display();
 
         if(this -> board.check_win())
-            return 1;
+            return win;
 
         sf::Clock main_clock;
         sf::Clock temp_clock;
@@ -83,7 +89,7 @@ int Level::handle_input(sf::RenderWindow &window) {
             window.display();
 
             if(this -> board.check_win())
-                return 1;
+                return win;
         }
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -96,7 +102,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         window.display();
 
         if(this -> board.check_win())
-            return 1;
+            return win;
 
         sf::Clock main_clock;
         sf::Clock temp_clock;
@@ -117,7 +123,7 @@ int Level::handle_input(sf::RenderWindow &window) {
             window.display();
 
             if(this -> board.check_win())
-                return 1;
+                return win;
         }
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -130,7 +136,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         window.display();
 
         if(this -> board.check_win())
-            return 1;
+            return win;
 
         sf::Clock main_clock;
         sf::Clock temp_clock;
@@ -151,7 +157,7 @@ int Level::handle_input(sf::RenderWindow &window) {
             window.display();
 
             if(this -> board.check_win())
-                return 1;
+                return win;
         }
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -164,7 +170,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         window.display();
 
         if(this -> board.check_win())
-            return 1;
+            return win;
 
         sf::Clock main_clock;
         sf::Clock temp_clock;
@@ -185,7 +191,7 @@ int Level::handle_input(sf::RenderWindow &window) {
             window.display();
 
             if(this -> board.check_win())
-                return 1;
+                return win;
         }
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
@@ -195,7 +201,7 @@ int Level::handle_input(sf::RenderWindow &window) {
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
         while (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){}
-        return 2;
+        return lose;
     }
 
     window.clear();
@@ -208,13 +214,13 @@ int Level::handle_input(sf::RenderWindow &window) {
         reset_level(*this);
 
     if (status == 2)
-        return -1;
+        return back;
 
     window.display();
 
     if(this -> board.check_win())
-        return 1;
-    return 0;
+        return win;
+    return playing;
 }
 
 void Level::display_background(sf::RenderWindow &window) {

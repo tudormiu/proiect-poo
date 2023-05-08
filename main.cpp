@@ -84,31 +84,46 @@ int main(){
                 if (event.type == sf::Event::Closed)
                     window.close();
             }
+
+            //pressed functioneaza pentru meniul principal cu codurile 1(play) sau 2(erase data)
             if(!pressed)
                 pressed = main_menu.display_menu(window);
 
+            int number_of_levels = 0;
+            std::ifstream number_data("game_data.txt");
+                number_data >> number_of_levels;
+
+            // 1(play)
             if (pressed == 1) {
                 int unlocked_levels = 0;
                 if(!updated) {
                     std::ifstream data("game_data.txt");
-                    data >> unlocked_levels;
+                    data >> number_of_levels >> unlocked_levels;
                     level_menu.activate_buttons(unlocked_levels);
                     updated = true;
                 }
 
-                if(selected_level == false)
+                //selected_level functioneaza pentru meniul de nivele cu codurile
+                // 0 default
+                // 1-10(nivel selectat)
+                // -1(back)
+                // -2(forward), but we don't hava an additional menu for this yet.
+                if(selected_level == 0)
                     selected_level = level_menu.display_menu(window);
 
+                // -1(back)
                 if(selected_level == -1){
                     pressed = 0;
                     selected_level = 0;
                     updated = false;
                 }
 
+                // -2(forward) n/a
                 if(selected_level == -2){
                     selected_level = 0;
                 }
 
+                // 1-10(nivel selectat)
                 if(selected_level > 0)
                 {
                     int status = Level ::display_level(window, levels[selected_level - 1]);
@@ -117,7 +132,7 @@ int main(){
                         if(status == 1)
                         {
                             std::ofstream fout("game_data.txt");
-                            fout << std::max(unlocked_levels, selected_level);
+                            fout << number_of_levels << '\n' << std::min(number_of_levels - 1, std::max(unlocked_levels, selected_level));
                         }
 
                         selected_level = 0;
@@ -126,9 +141,10 @@ int main(){
                 }
             }
 
+            // 2(erase data)
             if (pressed == 2) {
                 std::ofstream fout("game_data.txt");
-                fout << "0";
+                fout << number_of_levels << "\n0";
                 fout.close();
                 pressed = 0;
                 updated = false;
