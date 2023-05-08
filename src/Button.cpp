@@ -112,35 +112,28 @@ bool Square_button::check_parameters(sf::Vector2i mouse_position) {
             float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 128);
 }
 
-
-Back_button::Back_button(float x_axis, float y_axis, bool active):
-        Button(x_axis, y_axis, "", "Minecraft.ttf", "img/buttons/back_button_default.png",
-               "img/buttons/back_button_hover.png","img/buttons/small_square_button_disabled.png",
+Small_square_button::Small_square_button(float x_axis, float y_axis, const std::string& texture_default,
+                                         const std::string& texture_hover, bool active):
+        Button(x_axis, y_axis, "", "Minecraft.ttf", texture_default,
+               texture_hover,"img/buttons/small_square_button_disabled.png",
                46, active) {}
 
-bool Back_button::check_parameters(sf::Vector2i mouse_position) {
+bool Small_square_button::check_parameters(sf::Vector2i mouse_position) {
     return (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 64 and
             float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 64);
 }
+
+
+Back_button::Back_button(float x_axis, float y_axis, bool active):
+        Small_square_button(x_axis, y_axis, "img/buttons/back_button_default.png",
+               "img/buttons/back_button_hover.png", active) {}
 
 
 Forward_button::Forward_button(float x_axis, float y_axis, bool active):
-        Button(x_axis, y_axis, "", "Minecraft.ttf", "img/buttons/forward_button_default.png",
-               "img/buttons/forward_button_hover.png","img/buttons/small_square_button_disabled.png",
-               46, active) {}
-
-bool Forward_button::check_parameters(sf::Vector2i mouse_position) {
-    return (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 64 and
-            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 64);
-}
+        Small_square_button(x_axis, y_axis, "img/buttons/forward_button_default.png",
+               "img/buttons/forward_button_hover.png", active) {}
 
 
 Reset_button::Reset_button(float x_axis, float y_axis, bool active):
-        Button(x_axis, y_axis, "", "Minecraft.ttf", "img/buttons/reset_button_default.png",
-               "img/buttons/reset_button_hover.png","img/buttons/small_square_button_disabled.png",
-               46, active) {}
-
-bool Reset_button::check_parameters(sf::Vector2i mouse_position) {
-    return (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 64 and
-            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 64);
-}
+        Small_square_button(x_axis, y_axis, "img/buttons/reset_button_default.png",
+               "img/buttons/reset_button_hover.png", active) {}

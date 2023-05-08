@@ -47,25 +47,27 @@ public:
     bool check_parameters(sf::Vector2i mouse_position) override;
 };
 
+class Small_square_button : public Button {
+public:
+    explicit Small_square_button(float x_axis, float y_axis, const std::string& texture_default, const std::string& texture_hover, bool active = true);
+    bool check_parameters(sf::Vector2i mouse_position) override;
+};
 
-class Back_button : public Button {
+class Back_button : public Small_square_button {
 public:
     explicit Back_button(float x_axis, float y_axis, bool active = true);
-    bool check_parameters(sf::Vector2i mouse_position) override;
 };
 
 
-class Forward_button : public Button {
+class Forward_button : public Small_square_button {
 public:
     explicit Forward_button(float x_axis, float y_axis, bool active = true);
-    bool check_parameters(sf::Vector2i mouse_position) override;
 };
 
 
-class Reset_button : public Button {
+class Reset_button : public Small_square_button {
 public:
     explicit Reset_button(float x_axis, float y_axis, bool active = true);
-    bool check_parameters(sf::Vector2i mouse_position) override;
 };
 
 #endif //OOP_BUTTON_H
