@@ -49,8 +49,8 @@ Level::Level(const std::string& level_file_path): level_file_path(level_file_pat
 
 int Level::handle_input(sf::RenderWindow &window) {
 
-    float main_delay = 0.3f;
-    float temp_delay = 0.07f;
+    float main_delay = 0.2f;
+    float temp_delay = 0.05f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {

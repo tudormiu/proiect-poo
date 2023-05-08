@@ -27,7 +27,8 @@ public:
                         float vertical_offset = 4.5);
     void center_text(float vertical_offset = 0);
     void display_button(sf::RenderWindow &window, bool hover = false);
-    virtual int handle_button(sf::RenderWindow &window) = 0;
+    int handle_button(sf::RenderWindow &window);
+    virtual bool check_parameters(sf::Vector2i mouse_position) = 0;
     static void set_active(Button *buton, bool active_);
     friend std::ostream &operator<<(std::ostream &os, const Button &st);
 };
@@ -36,35 +37,35 @@ class Big_button : public Button {
 
 public:
     explicit Big_button(float x_axis, float y_axis, const std::string& text, bool active = true);
-    int handle_button(sf::RenderWindow &window) override;
+    bool check_parameters(sf::Vector2i mouse_position) override;
 };
 
 
 class Square_button : public Button {
 public:
     explicit Square_button(float x_axis, float y_axis, const std::string& text, bool active = true);
-    int handle_button(sf::RenderWindow &window) override;
+    bool check_parameters(sf::Vector2i mouse_position) override;
 };
 
 
 class Back_button : public Button {
 public:
     explicit Back_button(float x_axis, float y_axis, bool active = true);
-    int handle_button(sf::RenderWindow &window) override;
+    bool check_parameters(sf::Vector2i mouse_position) override;
 };
 
 
 class Forward_button : public Button {
 public:
     explicit Forward_button(float x_axis, float y_axis, bool active = true);
-    int handle_button(sf::RenderWindow &window) override;
+    bool check_parameters(sf::Vector2i mouse_position) override;
 };
 
 
 class Reset_button : public Button {
 public:
     explicit Reset_button(float x_axis, float y_axis, bool active = true);
-    int handle_button(sf::RenderWindow &window) override;
+    bool check_parameters(sf::Vector2i mouse_position) override;
 };
 
 #endif //OOP_BUTTON_H
