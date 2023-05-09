@@ -92,6 +92,7 @@ int main(){
             int number_of_levels = 0;
             std::ifstream number_data("game_data.txt");
                 number_data >> number_of_levels;
+            number_data.close();
 
             // 1(play)
             if (pressed == 1) {
@@ -118,7 +119,7 @@ int main(){
                     updated = false;
                 }
 
-                // -2(forward) n/a
+                // -2(forward) n/
                 if(selected_level == -2){
                     selected_level = 0;
                 }

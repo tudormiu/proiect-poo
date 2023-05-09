@@ -142,4 +142,4 @@ endif()
 # update name in .github/workflows/cmake.yml:29 when changing "bin" name here
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 install(DIRECTORY img levels DESTINATION bin)
-install(FILES Minecraft.ttf DESTINATION bin)
+install(FILES Minecraft.ttf game_data.txt DESTINATION bin)
