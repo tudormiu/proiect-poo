@@ -1,6 +1,6 @@
 #include "../headers/Landing_pad.h"
 
-Landing_pad::Landing_pad(const Position &position, std::string texture_path, bool active):
+Landing_pad::Landing_pad(const Position<int> &position, std::string texture_path, bool active):
                 position(position), texture_path(std::move(texture_path)), active(active) {}
 
 std::ostream &operator<<(std::ostream &os, const Landing_pad &st) {
@@ -16,12 +16,13 @@ bool Landing_pad::is_active() const {
     return this -> active;
 }
 
-bool Landing_pad::check_collision(const Position &position_) {
-    if (Position::comparing(position_, this -> position))
+bool Landing_pad::check_collision(const Position<int> &position_) {
+    Position<int> currentPosition = this->position;
+    if (currentPosition.comparing(position_, currentPosition))
     {
-        std::cout << "Cutia este pe o platforma\n";
         return true;
     }
     return false;
 }
+
 

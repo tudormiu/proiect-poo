@@ -5,13 +5,13 @@
 #include <SFML/Graphics.hpp>
 
 class Wall{
-    Position position;
+    Position<int> position;
     std::string texture_path;
 
 public:
-    explicit Wall(const Position &position, std::string  texture_path = "img/wall.png");
+    explicit Wall(const Position<int> &position, std::string  texture_path = "img/wall.png");
     friend std::ostream &operator<<(std::ostream &os, const Wall &st);
-    bool check_collision(Position const& position_);
+    bool check_collision(Position<int> const& position_);
     void display_wall(sf::RenderWindow &window, float offset_x, float offset_y) const;
 };
 

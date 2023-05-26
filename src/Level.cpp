@@ -19,7 +19,7 @@ Level::Level(const std::string& level_file_path): level_file_path(level_file_pat
     for (int i = 0; i < number_of_walls; ++i) {
             int x, y;
             file >> x >> y;
-            walls.push_back(Wall(Position{x,y}));
+            walls.emplace_back(Position{x,y});
         }
 
     int number_of_landing_pads;
@@ -27,7 +27,7 @@ Level::Level(const std::string& level_file_path): level_file_path(level_file_pat
     for (int i = 0; i < number_of_landing_pads; ++i) {
             int x, y;
             file >> x >> y;
-            landing_pads.push_back(Landing_pad(Position{x,y}));
+            landing_pads.emplace_back(Position{x,y});
         }
 
     int number_of_boxes;
@@ -35,7 +35,7 @@ Level::Level(const std::string& level_file_path): level_file_path(level_file_pat
     for (int i = 0; i < number_of_boxes; ++i) {
             int x, y;
             file >> x >> y;
-            boxes.push_back(Box(Position{x,y}));
+            boxes.emplace_back(Position{x,y});
         }
 
     int player_x, player_y;
@@ -55,7 +55,7 @@ int Level::handle_input(sf::RenderWindow &window) {
         win = 1,
         lose = 2};
 
-    float main_delay = 0.2f;
+    float main_delay = 0.15f;
     float temp_delay = 0.05f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))

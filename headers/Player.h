@@ -5,18 +5,18 @@
 #include <SFML/Graphics.hpp>
 
 class Player{
-    Position position;
+    Position<int> position;
     int orientation;
     unsigned power;
     std::string texture_path;
 
 public:
-    explicit Player(const Position &position, int orientation = 0, unsigned power = 1, std::string  texture_path = "img/bulb_jos.png");
+    explicit Player(const Position<int> &position, int orientation = 0, unsigned power = 1, std::string  texture_path = "img/bulb_jos.png");
     Player(Player const& other);
     Player();
     Player& operator=(Player const& other);
     friend std::ostream& operator<<(std::ostream& os, const Player& st);
-    [[nodiscard]] Position &getPosition();
+    [[nodiscard]] Position<int> &getPosition();
     void move(char input_);
     void power_up(int amount = 1);
     void display_player(sf::RenderWindow &window, float offset_x, float offset_y) const;

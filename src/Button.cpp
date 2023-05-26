@@ -3,7 +3,7 @@
 Button::Button(float x_axis, float y_axis, const std::string &text, const std::string &font_path,
                const std::string &texture_path_default, const std::string &texture_path_hover,
                const std::string &texture_path_disabled, int char_size,  bool active, float vertical_offset):
-               x_axis(x_axis), y_axis(y_axis), active(active) {
+               position(x_axis,y_axis), active(active) {
 
     set_up(text, font_path, texture_path_default, texture_path_hover, texture_path_disabled, char_size, vertical_offset);
 
@@ -28,9 +28,9 @@ void Button::set_up(const std::string& text_, const std::string& font_path, cons
     button_hover.setTexture(texture_hover);
     button_disabled.setTexture(texture_disabled);
 
-    button_default.setPosition(x_axis, y_axis);
-    button_hover.setPosition(x_axis, y_axis);
-    button_disabled.setPosition(x_axis, y_axis);
+    button_default.setPosition(position.get_x_axis(), position.get_y_axis());
+    button_hover.setPosition(position.get_x_axis(), position.get_y_axis());
+    button_disabled.setPosition(position.get_x_axis(), position.get_y_axis());
 
     this -> text.setString(text_);
     this -> text.setFont(font);
@@ -43,15 +43,17 @@ void Button::set_up(const std::string& text_, const std::string& font_path, cons
 }
 
 void Button::center_text(float vertical_offset) {
-    sf::Vector2f center = {x_axis + (float(this -> texture_default.getSize().x) - this -> text.getGlobalBounds().getSize().x) / 2, y_axis + vertical_offset};
+    sf::Vector2f center = {position.get_x_axis() + (float(this -> texture_default.getSize().x) - this -> text.getGlobalBounds().getSize().x) / 2, position.get_y_axis() + vertical_offset};
     this -> text.setPosition(center);
 }
 
 void Button::display_button(sf::RenderWindow &window, bool hover) {
 
     if (active){
-        if(hover)
+        if(hover) {
+
             window.draw(button_hover);
+        }
         else
             window.draw(button_default);
 
@@ -83,7 +85,7 @@ void Button::set_active(bool active_) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Button &st) {
-    os << "x_axis: " << st.x_axis << " y_axis: " << st.y_axis << " active: " << st.active;
+    os << "x_axis: " << st.position.get_x_axis()<< " y_axis: " << st.position.get_y_axis() << " active: " << st.active;
     return os;
 }
 
@@ -96,8 +98,8 @@ Big_button::Big_button(float x_axis, float y_axis, const std::string &text, bool
                46, active) {}
 
 bool Big_button::check_parameters(sf::Vector2i mouse_position) {
-    return (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 512 and
-        float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 64);
+    return (float(mouse_position.x) > this -> position.get_x_axis() && float(mouse_position.x) < position.get_x_axis() + 512 and
+        float(mouse_position.y) > this -> position.get_y_axis() && float(mouse_position.y) < position.get_y_axis() + 64);
 }
 
 
@@ -108,8 +110,8 @@ Square_button::Square_button(float x_axis, float y_axis, const std::string &text
 
 
 bool Square_button::check_parameters(sf::Vector2i mouse_position) {
-    return (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 128 and
-            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 128);
+    return (float(mouse_position.x) > this -> position.get_x_axis() && float(mouse_position.x) < position.get_x_axis() + 128 and
+            float(mouse_position.y) > this -> position.get_y_axis() && float(mouse_position.y) < position.get_y_axis() + 128);
 }
 
 Small_square_button::Small_square_button(float x_axis, float y_axis, const std::string& texture_default,
@@ -119,8 +121,8 @@ Small_square_button::Small_square_button(float x_axis, float y_axis, const std::
                46, active) {}
 
 bool Small_square_button::check_parameters(sf::Vector2i mouse_position) {
-    return (float(mouse_position.x) > this -> x_axis && float(mouse_position.x) < x_axis + 64 and
-            float(mouse_position.y) > this -> y_axis && float(mouse_position.y) < y_axis + 64);
+    return (float(mouse_position.x) > this -> position.get_x_axis() && float(mouse_position.x) < position.get_x_axis() + 64 and
+            float(mouse_position.y) > this -> position.get_y_axis() && float(mouse_position.y) < position.get_y_axis() + 64);
 }
 
 

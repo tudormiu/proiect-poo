@@ -1,7 +1,7 @@
 #include <utility>
 #include "../headers/Box.h"
 
-Box::Box(const Position &position, bool status, unsigned int weight, std::string  texture_path) :
+Box::Box(const Position<int> &position, bool status, unsigned int weight, std::string  texture_path) :
         position(position), status(status), weight(weight), texture_path(std::move(texture_path)) {
 }
 
@@ -31,10 +31,10 @@ bool Box::get_status() const {
     return status;
 }
 
-bool Box::check_collision(const Position &position_) {
-    if (Position::comparing(position_, this -> position))
+bool Box::check_collision(const Position<int> &position_) {
+    Position<int> currentPosition = this->position;
+    if (currentPosition.comparing(position_, currentPosition))
     {
-        std::cout << "Ai atins o cutie\n";
         return true;
     }
     return false;

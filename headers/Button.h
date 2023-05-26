@@ -11,10 +11,11 @@ class Button {
     sf::Text text;
 
 protected:
-    float x_axis, y_axis;
+    Position<float> position;
     bool active;
 
 public:
+
 
     Button(float x_axis, float y_axis, const std::string& text, const std::string& font_path,
                     const std::string& texture_path_default, const std::string& texture_path_hover,
