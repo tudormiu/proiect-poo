@@ -36,40 +36,63 @@ int main(){
 
         std::vector<Button*> level_buttons;
         level_buttons.reserve(1000);
-        //for (int i = 0; i < 10; i++){
-        //    level_buttons.emplace_back(Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)),   std::to_string(i + 1)));
-        //}
-        int i = 0;
-        Button * level1 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "1");
-        i++;
-        Button * level2 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "2");
-        i++;
-        Button * level3 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "3");
-        i++;
-        Button * level4 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "4");
-        i++;
-        Button * level5 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "5");
-        i++;
-        Button * level6 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "6");
-        i++;
-        Button * level7 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "7");
-        i++;
-        Button * level8 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "8");
-        i++;
-        Button * level9 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "9");
-        i++;
-        Button * level10 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "10");
+        for (int i = 0; i < 10; i++){
+            level_buttons.emplace_back(Button_factory::level_button(i));
+        }
 
-        level_buttons.emplace_back(level1);
-        level_buttons.emplace_back(level2);
-        level_buttons.emplace_back(level3);
-        level_buttons.emplace_back(level4);
-        level_buttons.emplace_back(level5);
-        level_buttons.emplace_back(level6);
-        level_buttons.emplace_back(level7);
-        level_buttons.emplace_back(level8);
-        level_buttons.emplace_back(level9);
-        level_buttons.emplace_back(level10);
+//        int i = 0;
+//        Button * level1 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "1");
+//        i++;
+//        Button * level2 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "2");
+//        i++;
+//        Button * level3 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "3");
+//        i++;
+//        Button * level4 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "4");
+//        i++;
+//        Button * level5 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "5");
+//        i++;
+//        Button * level6 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "6");
+//        i++;
+//        Button * level7 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "7");
+//        i++;
+//        Button * level8 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "8");
+//        i++;
+//        Button * level9 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "9");
+//        i++;
+//        Button * level10 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "10");
+
+//        int i = 0;
+//        Button * level1 = Button_factory::level_button(i);
+//        i++;
+//        Button * level2 = Button_factory::level_button(i);
+//        i++;
+//        Button * level3 = Button_factory::level_button(i);
+//        i++;
+//        Button * level4 = Button_factory::level_button(i);
+//        i++;
+//        Button * level5 = Button_factory::level_button(i);
+//        i++;
+//        Button * level6 = Button_factory::level_button(i);
+//        i++;
+//        Button * level7 = Button_factory::level_button(i);
+//        i++;
+//        Button * level8 = Button_factory::level_button(i);
+//        i++;
+//        Button * level9 = Button_factory::level_button(i);
+//        i++;
+//        Button * level10 = Button_factory::level_button(i);
+
+
+//        level_buttons.emplace_back(level1);
+//        level_buttons.emplace_back(level2);
+//        level_buttons.emplace_back(level3);
+//        level_buttons.emplace_back(level4);
+//        level_buttons.emplace_back(level5);
+//        level_buttons.emplace_back(level6);
+//        level_buttons.emplace_back(level7);
+//        level_buttons.emplace_back(level8);
+//        level_buttons.emplace_back(level9);
+//        level_buttons.emplace_back(level10);
 
         Level_menu level_menu(level_buttons, "img/background_levels.jpg", true, false, &bb, &fb);
 
@@ -156,16 +179,19 @@ int main(){
 
         delete button1;
         delete button2;
-        delete level1;
-        delete level2;
-        delete level3;
-        delete level4;
-        delete level5;
-        delete level6;
-        delete level7;
-        delete level8;
-        delete level9;
-        delete level10;
+//        delete level1;
+//        delete level2;
+//        delete level3;
+//        delete level4;
+//        delete level5;
+//        delete level6;
+//        delete level7;
+//        delete level8;
+//        delete level9;
+//        delete level10;
+
+          for (auto & temp : level_buttons)
+              delete temp;
 
     }
     catch (eroare_aplicatie &e) {

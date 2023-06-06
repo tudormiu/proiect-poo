@@ -16,5 +16,4 @@ public:
     bool check_collision(Position<int> const& position_);
 };
 
-
 #endif //OOP_LANDING_PAD_H

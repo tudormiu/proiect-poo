@@ -139,3 +139,7 @@ Forward_button::Forward_button(float x_axis, float y_axis, bool active):
 Reset_button::Reset_button(float x_axis, float y_axis, bool active):
         Small_square_button(x_axis, y_axis, "img/buttons/reset_button_default.png",
                "img/buttons/reset_button_hover.png", active) {}
+
+Square_button *Button_factory::level_button(int i) {
+    return new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)),   std::to_string(i + 1));
+}

@@ -71,4 +71,12 @@ public:
     explicit Reset_button(float x_axis, float y_axis, bool active = true);
 };
 
+class Button_factory {
+public:
+    static Square_button* level_button(int i);
+//    static Big_button* menu_button(int i);
+//    Forward_button* forward_button();
+//    Back_button* back_button();
+};
+
 #endif //OOP_BUTTON_H
