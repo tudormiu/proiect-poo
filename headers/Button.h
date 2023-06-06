@@ -56,13 +56,19 @@ public:
 
 class Back_button : public Small_square_button {
 public:
-    explicit Back_button(float x_axis, float y_axis, bool active = true);
+    Back_button(float x_axis, float y_axis, bool active = true);
 };
 
 
 class Forward_button : public Small_square_button {
+    Forward_button(float x_axis, float y_axis, bool active = true);
 public:
-    explicit Forward_button(float x_axis, float y_axis, bool active = true);
+    Forward_button(const Forward_button&) = delete;
+    Forward_button& operator=(const Forward_button&) = delete;
+    static Forward_button* get_forward_button_pointer() {
+        static auto* button = new Forward_button(1256, 492);
+        return button;
+    }
 };
 
 
@@ -73,10 +79,9 @@ public:
 
 class Button_factory {
 public:
-    static Square_button* level_button(int i);
-//    static Big_button* menu_button(int i);
-//    Forward_button* forward_button();
-//    Back_button* back_button();
+    static Square_button* level_button(int position);
+    static Big_button* menu_button(int y_axis, const std::string& string);
+    static Back_button* back_button();
 };
 
 #endif //OOP_BUTTON_H

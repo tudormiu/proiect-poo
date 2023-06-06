@@ -143,3 +143,11 @@ Reset_button::Reset_button(float x_axis, float y_axis, bool active):
 Square_button *Button_factory::level_button(int i) {
     return new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)),   std::to_string(i + 1));
 }
+
+Big_button *Button_factory::menu_button(int y_axis, const std::string& string) {
+    return new Big_button(464, float(y_axis), string);
+}
+
+Back_button *Button_factory::back_button() {
+    return new Back_button(120, 492);
+}

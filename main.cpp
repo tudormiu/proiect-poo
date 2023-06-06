@@ -8,16 +8,9 @@ int main(){
     sf::RenderWindow window(sf::VideoMode(1440, 810), "My window", sf::Style::Titlebar | sf::Style::Close);
 
         try{
-
-        Button * button1 = new Big_button(464, 460, std::string("PLAY!"));
-        Button * button2 = new Big_button(464, 560, std::string("ERASE DATA"));
-
-        Forward_button fb(1256, 492);
-        Back_button bb(120, 492);
-
         std::vector<Button*> buttons_menu;
-        buttons_menu.emplace_back(button1);
-        buttons_menu.emplace_back(button2);
+        buttons_menu.emplace_back(Button_factory::menu_button(460, std::string("PLAY!")));
+        buttons_menu.emplace_back(Button_factory::menu_button(560, std::string("ERASE DATA")));
 
         Menu main_menu(buttons_menu);
 
@@ -40,62 +33,11 @@ int main(){
             level_buttons.emplace_back(Button_factory::level_button(i));
         }
 
-//        int i = 0;
-//        Button * level1 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "1");
-//        i++;
-//        Button * level2 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "2");
-//        i++;
-//        Button * level3 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "3");
-//        i++;
-//        Button * level4 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "4");
-//        i++;
-//        Button * level5 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "5");
-//        i++;
-//        Button * level6 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "6");
-//        i++;
-//        Button * level7 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "7");
-//        i++;
-//        Button * level8 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "8");
-//        i++;
-//        Button * level9 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "9");
-//        i++;
-//        Button * level10 = new Square_button(256 + float(200 * int(i % 5)), 360 + float(200 * int(i / 5)), "10");
+        Button * back_button = Button_factory::back_button();
+        Button * forward_button = Forward_button::get_forward_button_pointer();
 
-//        int i = 0;
-//        Button * level1 = Button_factory::level_button(i);
-//        i++;
-//        Button * level2 = Button_factory::level_button(i);
-//        i++;
-//        Button * level3 = Button_factory::level_button(i);
-//        i++;
-//        Button * level4 = Button_factory::level_button(i);
-//        i++;
-//        Button * level5 = Button_factory::level_button(i);
-//        i++;
-//        Button * level6 = Button_factory::level_button(i);
-//        i++;
-//        Button * level7 = Button_factory::level_button(i);
-//        i++;
-//        Button * level8 = Button_factory::level_button(i);
-//        i++;
-//        Button * level9 = Button_factory::level_button(i);
-//        i++;
-//        Button * level10 = Button_factory::level_button(i);
-
-
-//        level_buttons.emplace_back(level1);
-//        level_buttons.emplace_back(level2);
-//        level_buttons.emplace_back(level3);
-//        level_buttons.emplace_back(level4);
-//        level_buttons.emplace_back(level5);
-//        level_buttons.emplace_back(level6);
-//        level_buttons.emplace_back(level7);
-//        level_buttons.emplace_back(level8);
-//        level_buttons.emplace_back(level9);
-//        level_buttons.emplace_back(level10);
-
-        Level_menu level_menu(level_buttons, "img/background_levels.jpg", true, false, &bb, &fb);
-
+        Level_menu level_menu(level_buttons, "img/background_levels.jpg", true, false,
+                              back_button, forward_button);
 
         bool updated = false;
         int pressed = 0;
@@ -177,21 +119,14 @@ int main(){
             window.display();
         }
 
-        delete button1;
-        delete button2;
-//        delete level1;
-//        delete level2;
-//        delete level3;
-//        delete level4;
-//        delete level5;
-//        delete level6;
-//        delete level7;
-//        delete level8;
-//        delete level9;
-//        delete level10;
+        for (auto & temp : buttons_menu)
+            delete temp;
 
-          for (auto & temp : level_buttons)
-              delete temp;
+        for (auto & temp : level_buttons)
+            delete temp;
+
+        delete back_button;
+        delete forward_button;
 
     }
     catch (eroare_aplicatie &e) {
